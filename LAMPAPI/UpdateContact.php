@@ -2,6 +2,10 @@
 $inData = getRequestInfo();
 
 $contactId = $inData["ContactId"];
+$firstName = $inData["FirstName"];
+$lastName = $inData["LastName"];
+$phoneNumber = $inData["PhoneNumber"];
+$email = $inData["Email"];
 
 $host = "localhost";
 $username = "root";
@@ -15,8 +19,8 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     # prepare statement
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ContactID = ?");
-    $stmt->bind_param("i", $contactId);
+    $stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, PhoneNumber = ?, Email = ? WHERE ContactID = ?");
+    $stmt->bind_param("ssssi", $firstName, $lastName, $phoneNumber, $email, $contactId);
     # execute statement
     $stmt->execute();
     $stmt->close();
@@ -29,15 +33,8 @@ function getRequestInfo()
     return json_decode(file_get_contents('php://input'), true);
 }
 
-function sendResultInfoAsJson($obj)
+function returnWithError($error)
 {
-    header('Content-type: application/json');
-    echo $obj;
+    $response = array("error" => $error);
+    echo json_encode($response);
 }
-
-function returnWithError($err)
-{
-    $retValue = '{"error":"' . $err . '"}';
-    sendResultInfoAsJson($retValue);
-}
-?>

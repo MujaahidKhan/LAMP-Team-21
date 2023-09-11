@@ -8,16 +8,18 @@ $lastName = "";
 
 $host = "localhost";
 $username = "root";
-$password = "root";
+$sqlPassword = "root";
 $database = "ContactManagerDB";
 
 // Create connection
-$conn = new mysqli($host, $username, $password, $database);
+$conn = new mysqli($host, $username, $sqlPassword, $database);
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {
 	$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
-	$stmt->bind_param("ss", $inData["login"], $inData["password"]);
+	$hashedPassword = md5($inData["password"]);
+	$stmt->bind_param("ss", $inData["login"], $hashedPassword);
+	error_log($hashedPassword, 0);
 	$stmt->execute();
 	$result = $stmt->get_result();
 

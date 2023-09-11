@@ -5,7 +5,13 @@ $inData = getRequestInfo();
 $searchResults = array();
 $searchCount = 0;
 
-$conn = new mysqli("localhost", "root", "root", "ContactManagerDB");
+$host = "localhost";
+$username = "root";
+$sqlPassword = "root";
+$database = "ContactManagerDB";
+
+// Create connection
+$conn = new mysqli($host, $username, $sqlPassword, $database);
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
