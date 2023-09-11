@@ -6,7 +6,13 @@ $id = 0;
 $firstName = "";
 $lastName = "";
 
-$conn = new mysqli("localhost", "root", "root", "testlogindatabase");
+$host = "localhost";
+$username = "root";
+$password = "root";
+$database = "ContactManagerDB";
+
+// Create connection
+$conn = new mysqli($host, $username, $password, $database);
 if ($conn->connect_error) {
 	returnWithError($conn->connect_error);
 } else {

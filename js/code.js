@@ -1,4 +1,4 @@
-const urlBase = 'http://localhost/LAMPAPI';
+const urlBase = '/LAMPAPI';
 const extension = 'php';
 
 let userId = 0;
@@ -41,7 +41,7 @@ function doLogin() {
 
 				saveCookie();
 
-				window.location.href = "color.html";
+				window.location.href = "contactmanager.html";
 			}
 		};
 		xhr.send(jsonPayload);
@@ -93,14 +93,32 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
-function addColor() {
-	let newColor = document.getElementById("colorText").value;
-	document.getElementById("colorAddResult").innerHTML = "";
+function addContact() {
+	let newFirstName = document.getElementById("firstName").value;
+	let newLastName = document.getElementById("lastName").value;
+	let newEmail = document.getElementById("email").value;
+	let newPhone = document.getElementById("phone").value;
+	let newAddress = document.getElementById("address").value;
+	let newCity = document.getElementById("city").value;
+	let newState = document.getElementById("state").value;
+	let newZip = document.getElementById("zip").value;
 
-	let tmp = { color: newColor, userId, userId };
+	document.getElementById("contactAddResult").innerHTML = "";
+
+	let tmp = {
+		UserId: userId,
+		FirstName: newFirstName,
+		LastName: newLastName,
+		Email: newEmail,
+		Phone: newPhone,
+		Address: newAddress,
+		City: newCity,
+		State: newState,
+		Zip: newZip
+	};
 	let jsonPayload = JSON.stringify(tmp);
 
-	let url = urlBase + '/AddColor.' + extension;
+	let url = urlBase + '/AddContact.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -108,27 +126,28 @@ function addColor() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("colorAddResult").innerHTML = "Color has been added";
+				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
-		document.getElementById("colorAddResult").innerHTML = err.message;
+		document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 
 }
 
-function searchColor() {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("colorSearchResult").innerHTML = "";
+function searchContacts() {
+	let searchText = document.getElementById("searchText").value;
+	document.getElementById("contactSearchResult").innerHTML = "";
 
-	let colorList = "";
+	let contactList = "";
 
-	let tmp = { search: srch, userId: userId };
+	// package the search text and user id into a json payload
+	let tmp = { search: searchText, userId: userId };
 	let jsonPayload = JSON.stringify(tmp);
 
-	let url = urlBase + '/SearchColors.' + extension;
+	let url = urlBase + '/SearchContacts.' + extension;
 
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
@@ -136,23 +155,26 @@ function searchColor() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse(xhr.responseText);
 
+				let table = "<table><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>";
+
 				for (let i = 0; i < jsonObject.results.length; i++) {
-					colorList += jsonObject.results[i];
-					if (i < jsonObject.results.length - 1) {
-						colorList += "<br />\r\n";
-					}
+					let contact = jsonObject.results[i];
+					table += `<td>${contact.FirstName}</td><td>${contact.LastName}</td>
+								<td>${contact.Phone}</td><td>${contact.Email}</td><td>${contact.Address}</td>
+								<td>${contact.City}</td><td>${contact.State}</td><td>${contact.Zip}</td></tr><tr>`;
 				}
 
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+				table += "</table>";
+
+				document.getElementById("contactSearchResult").innerHTML = table;
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
-		document.getElementById("colorSearchResult").innerHTML = err.message;
+		document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
-
 }

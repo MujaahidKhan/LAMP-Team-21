@@ -1,0 +1,47 @@
+# make the talbes
+
+CREATE TABLE `ContactManagerDB`.`Users` ( `ID` INT NOT NULL AUTO_INCREMENT,
+`DateCreated` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`DateLastLoggedIn` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+`FirstName` VARCHAR(50) NOT NULL DEFAULT '',
+`LastName` VARCHAR(50) NOT NULL DEFAULT '',
+`Login` VARCHAR(50) NOT NULL DEFAULT '',
+`Password` VARCHAR(50) NOT NULL DEFAULT '',
+PRIMARY KEY (`ID`)
+) ENGINE = InnoDB;
+
+CREATE TABLE `ContactManagerDB`.`Contacts` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
+  `UserID` INT NOT NULL,
+  `FirstName` VARCHAR(100) NOT NULL DEFAULT '',
+  `LastName` VARCHAR(100) NOT NULL DEFAULT '',
+  `Email` VARCHAR(254) NOT NULL DEFAULT '',
+  `Phone` VARCHAR(20) NOT NULL DEFAULT '',
+  `Address` VARCHAR(255) NOT NULL DEFAULT '',
+  `City` VARCHAR(255) NOT NULL DEFAULT '',
+  `State` VARCHAR(50) NOT NULL DEFAULT '',
+  `Zip` VARCHAR(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`ID`),
+  FOREIGN KEY (`UserID`) REFERENCES `Users`(`ID`) ON DELETE CASCADE
+) ENGINE = InnoDB;
+
+insert into Users (FirstName,LastName,Login,Password) VALUES ('John','Doe','user1','password1');
+insert into Users (FirstName,LastName,Login,Password) VALUES ('Jane','Doe','user2','password2');
+insert into Users (FirstName,LastName,Login,Password) VALUES ('Bob','Smith','user3','password3');
+insert into Users (FirstName,LastName,Login,Password) VALUES ('Sally','Smith','user4','password4');
+insert into Users (FirstName,LastName,Login,Password) VALUES ('Joe','Johnson','user5','password5');
+
+INSERT INTO `ContactManagerDB`.`Contacts` (`UserID`, `FirstName`, `LastName`, `Email`, `Phone`, `Address`, `City`, `State`, `Zip`)
+VALUES
+  (1, 'John', 'Doe', 'john.doe@example.com', '555-1234', '123 Main St', 'Anytown', 'CA', '12345'),
+  (1, 'Jane', 'Doe', 'jane.doe@example.com', '555-5678', '456 Oak St', 'Othertown', 'NY', '67890'),
+  (1, '', '', '', '', '', '', '', ''),
+  (2, 'Bob', 'Smith', 'bob.smith@example.com', '555-2468', '789 Elm St', 'Somewhere', 'TX', '13579'),
+  (2, 'Sally', 'Smith', 'sally.smith@example.com', '555-3690', '321 Pine St', 'Nowhere', 'FL', '24680'),
+  (3, 'Joe', 'Johnson', 'joe.johnson@example.com', '555-8024', '555 Maple St', 'Everytown', 'IL', '97531'),
+  (3, 'Mary', 'Smith', 'mary.smith@example.com', '555-1357', '246 Oak St', 'Othertown', 'NY', '24680'),
+  (4, 'Tom', 'Johnson', 'tom.johnson@example.com', '555-2468', '789 Elm St', 'Somewhere', 'TX', '13579'),
+  (4, 'Emily', 'Johnson', 'emily.johnson@example.com', '555-3690', '321 Pine St', 'Nowhere', 'FL', '24680'),
+  (5, 'David', 'Lee', 'david.lee@example.com', '555-8024', '555 Maple St', 'Everytown', 'IL', '97531'),
+  (5, 'Sarah', 'Lee', 'sarah.lee@example.com', '555-2468', '789 Elm St', 'Somewhere', 'TX', '13579'),
+  (5, 'Michael', 'Lee', 'michael.lee@example.com', '555-3690', '321 Pine St', 'Nowhere', 'FL', '24680');
