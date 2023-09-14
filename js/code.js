@@ -5,16 +5,6 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function showRegister() {
-    document.getElementById("loginDiv").style.display = "none";
-    document.getElementById("registerDiv").style.display = "block";
-}
-
-function showLogin() {
-	document.getElementById("loginDiv").style.display = "block";
-	document.getElementById("registerDiv").style.display = "none";
-}
-
 function doRegister() {
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
@@ -31,7 +21,7 @@ function doRegister() {
         FirstName: firstName,
         LastName: lastName,
         Login: username,
-        Password: password // to be hashed...
+        Password: password
     });
 
     let url = urlBase + "/Register." + extension;
