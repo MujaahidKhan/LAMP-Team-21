@@ -17,51 +17,55 @@ div {
     gap: 50px;
 }
 
-a {
+a.btn {
     position: relative;
     background: #fff;
     color: #fff;
-
     text-decoration: none;
     text-transform: uppercase;
     font-size: 1.5em;
     letter-spacing: 0.1em;
     font-weight: 400;
-
     padding: 10px 30px;
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -ms-transition: 0.5s;
     -o-transition: 0.5s;
+    border: none;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
 }
 
-a:hover {
+a.btn:hover {
     background: var(--clr);
     color: var(--clr);
     letter-spacing: 0.25em;
     box-shadow: 0 0 35px var(--clr);
 }
 
-a:before {
+a.btn:before {
     content: "";
     position: absolute;
     inset: 2px;
     background: #27282c;
 }
 
-a span {
+a.btn span {
     position: relative;
     z-index: 1;
 }
 
-a i {
+a.btn i {
     position: absolute;
     inset: 0;
     display: block;
 }
 
-a i::before {
+a.btn i::before {
     content: "";
     position: absolute;
     top: 0;
@@ -81,12 +85,12 @@ a i::before {
     -o-transition: 0.5s;
 }
 
-a:hover i::before {
+a.btn:hover i::before {
     width: 20px;
     left: 20%;
 }
 
-a i::after {
+a.btn i::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -106,7 +110,27 @@ a i::after {
     -o-transition: 0.5s;
 }
 
-a:hover i::after {
+a.btn:hover i::after {
     width: 20px;
     left: 80%;
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background: black;
+    padding: 20px;
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }

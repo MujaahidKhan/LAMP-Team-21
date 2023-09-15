@@ -1,7 +1,7 @@
 <html>
 
 <head>
-	<title>Better Placeholer Title</title>
+	<title>Contact Manager</title>
 	<script type="text/javascript" src="js/code.js"></script>
 	<link href="css/styles.css" rel="stylesheet">
 
@@ -17,28 +17,61 @@
 
 <body>
 
-	<h1 id="title">Better Placeholer Title</h1>
+	<h1 id="title">Contact Manager</h1>
 
 
 	<span id="userName"></span>
-	<a onclick="doLogout();" style="--clr:#1e9bff"><span>Log Out</span><i></i></a>
+	<a class="btn" href="#" onclick="doLogout();" style="--clr:#1e9bff"><span>Log Out</span><i></i></a>
 
 
 	<input type="text" id="searchText" placeholder="Contact To Search For" />
-	<a onclick="searchContacts();" style="--clr:#1e9bff"><span>Search Contact</span><i></i></a>
+	<!-- <a class="btn" href="#" onclick="searchContacts();" style="--clr:#1e9bff"><span>Search Contact</span><i></i></a> -->
+	<!--after searchText has been unchanged for 1 second, call searchContacts();-->
+	<script>
+		let typingTimer;
+		const doneTypingInterval = 1000; // 1000 milliseconds (1 second)
+
+		const searchText = document.getElementById('searchText');
+
+		searchText.addEventListener('input', function () {
+			clearTimeout(typingTimer);
+			typingTimer = setTimeout(searchContacts, doneTypingInterval);
+		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			searchContacts();
+		});
+	</script>
+
+	<!-- <div class="popup" id="addContactPopup">
+		<input type="text" id="firstName" placeholder="First Name">
+		<input type="text" id="lastName" placeholder="Last Name">
+		<input type="text" id="email" placeholder="Email">
+		<input type="text" id="phone" placeholder="Phone Number">
+		<input type="text" id="address" placeholder="Address">
+		<input type="text" id="city" placeholder="City">
+		<input type="text" id="state" placeholder="State">
+		<input type="text" id="zip" placeholder="Zip Code">
+		<a class="btn" href="#" onclick="addContact();" style="--clr:#1e9bff"><span>Add Contact</span><i></i></a>
+		<span id="contactAddResult"></span>
+	</div> -->
+
+
 	<span id="contactSearchResult"></span>
 	<p id="contactList"></p>
 
-	<input type="text" id="firstName" placeholder="First Name">
-	<input type="text" id="lastName" placeholder="Last Name">
-	<input type="text" id="email" placeholder="Email">
-	<input type="text" id="phone" placeholder="Phone Number">
-	<input type="text" id="address" placeholder="Address">
-	<input type="text" id="city" placeholder="City">
-	<input type="text" id="state" placeholder="State">
-	<input type="text" id="zip" placeholder="Zip Code">
-	<a onclick="addContact();" style="--clr:#1e9bff"><span>Add Contact</span><i></i></a>
-	<span id="contactAddResult"></span>
+	<div class="popup" id="addContactPopup" display="none">
+		<input type="text" id="firstName" placeholder="First Name">
+		<input type="text" id="lastName" placeholder="Last Name">
+		<input type="text" id="email" placeholder="Email">
+		<input type="text" id="phone" placeholder="Phone Number">
+		<input type="text" id="address" placeholder="Address">
+		<input type="text" id="city" placeholder="City">
+		<input type="text" id="state" placeholder="State">
+		<input type="text" id="zip" placeholder="Zip Code">
+		<a class="btn" href="#" onclick="addContact();" style="--clr:#1e9bff"><span>Add Contact</span><i></i></a>
+		<span id="contactAddResult"></span>
+	</div>
 
 </body>
 

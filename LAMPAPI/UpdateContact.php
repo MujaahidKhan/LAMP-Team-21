@@ -4,8 +4,9 @@ $inData = getRequestInfo();
 $contactId = $inData["ContactId"];
 $firstName = $inData["FirstName"];
 $lastName = $inData["LastName"];
-$phoneNumber = $inData["PhoneNumber"];
 $email = $inData["Email"];
+$phoneNumber = $inData["PhoneNumber"];
+
 
 $host = "localhost";
 $username = "root";
@@ -19,8 +20,26 @@ if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     # prepare statement
-    $stmt = $conn->prepare("UPDATE Contacts SET FirstName = ?, LastName = ?, PhoneNumber = ?, Email = ? WHERE ContactID = ?");
-    $stmt->bind_param("ssssi", $firstName, $lastName, $phoneNumber, $email, $contactId);
+    $stmt = $conn->prepare("UPDATE Contacts SET
+                            FirstName = ?,
+                            LastName = ?,
+                            Email = ?,
+                            Phone = ?,
+                            Address = ?,
+                            City = ?,
+                            State = ?,
+                            Zip = ?
+                            WHERE ContactID = ?");
+    $stmt->bind_param("ssssssssi",
+                        $firstName,
+                        $lastName,
+                        $email,
+                        $phoneNumber,
+                        $address,
+                        $city,
+                        $state,
+                        $zip,
+                        $contactId);
     # execute statement
     $stmt->execute();
     $stmt->close();

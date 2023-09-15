@@ -15,8 +15,14 @@ $conn = new mysqli($host, $username, $sqlPassword, $database);
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
-    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE CONCAT(FirstName, ' ', LastName, ' ', Email,
-							' ', Phone, ' ', Address, ' ', City, ' ', State, ' ', Zip) LIKE ? AND UserID = ?");
+    $stmt = $conn->prepare("SELECT * FROM Contacts WHERE CONCAT(FirstName, ' ',
+                                                                LastName, ' ',
+                                                                Email, ' ',
+                                                                Phone, ' ',
+                                                                Address, ' ',
+                                                                City, ' ',
+                                                                State, ' ',
+                                                                Zip) LIKE ? AND UserID = ?");
     $searchText = "%" . $inData["search"] . "%";
     $stmt->bind_param("ss", $searchText, $inData["userId"]);
     $stmt->execute();

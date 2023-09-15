@@ -6,44 +6,44 @@ let firstName = "";
 let lastName = "";
 
 function doRegister() {
-    let firstName = document.getElementById("firstName").value;
-    let lastName = document.getElementById("lastName").value;
-    let username = document.getElementById("registerName").value;
-    let password = document.getElementById("registerPassword").value;
-    let retypePassword = document.getElementById("retypePassword").value;
+	let firstName = document.getElementById("firstName").value;
+	let lastName = document.getElementById("lastName").value;
+	let username = document.getElementById("registerName").value;
+	let password = document.getElementById("registerPassword").value;
+	let retypePassword = document.getElementById("retypePassword").value;
 
-    if (password !== retypePassword) {
-        document.getElementById("registerResult").innerHTML = "Passwords do not match";
-        return;
-    }
+	if (password !== retypePassword) {
+		document.getElementById("registerResult").innerHTML = "Passwords do not match";
+		return;
+	}
 
-    let jsonPayload = JSON.stringify({
-        FirstName: firstName,
-        LastName: lastName,
-        Login: username,
-        Password: password
-    });
+	let jsonPayload = JSON.stringify({
+		FirstName: firstName,
+		LastName: lastName,
+		Login: username,
+		Password: password
+	});
 
-    let url = urlBase + "/Register." + extension;
+	let url = urlBase + "/Register." + extension;
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-        xhr.onreadystatechange = function () {
-            if (this.readyState == 4 && this.status == 200) {
-                let jsonObject = JSON.parse(xhr.responseText);
-                if (jsonObject.error) {
-                    document.getElementById("registerResult").innerHTML = jsonObject.error;
-                } else {
-                    document.getElementById("registerResult").innerHTML = "Registration successful";
-                }
-            }
-        };
-        xhr.send(jsonPayload);
-    } catch (err) {
-        document.getElementById("registerResult").innerHTML = err.message;
-    }
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try {
+		xhr.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let jsonObject = JSON.parse(xhr.responseText);
+				if (jsonObject.error) {
+					document.getElementById("registerResult").innerHTML = jsonObject.error;
+				} else {
+					document.getElementById("registerResult").innerHTML = "Registration successful";
+				}
+			}
+		};
+		xhr.send(jsonPayload);
+	} catch (err) {
+		document.getElementById("registerResult").innerHTML = err.message;
+	}
 }
 
 function doLogin() {
@@ -134,6 +134,18 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
+// Function to show the popup
+function showPopup() {
+	const popupContainer = document.getElementById('popupContainer');
+	popupContainer.style.display = 'flex';
+}
+
+// Function to hide the popup
+function hidePopup() {
+	const popupContainer = document.getElementById('popupContainer');
+	popupContainer.style.display = 'none';
+}
+
 function addContact() {
 	let newFirstName = document.getElementById("firstName").value;
 	let newLastName = document.getElementById("lastName").value;
@@ -199,13 +211,22 @@ function searchContacts() {
 				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse(xhr.responseText);
 
+				// add labels to the table
 				let table = "<table><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>";
 
+				// add each contact to the table
 				for (let i = 0; i < jsonObject.results.length; i++) {
 					let contact = jsonObject.results[i];
-					table += `<td>${contact.FirstName}</td><td>${contact.LastName}</td>
-								<td>${contact.Phone}</td><td>${contact.Email}</td><td>${contact.Address}</td>
-								<td>${contact.City}</td><td>${contact.State}</td><td>${contact.Zip}</td></tr><tr>`;
+					table += `<tr onClick="showEditModal(this)" data-contact-id="${contact.ID}" style="cursor: pointer;">
+              					<td>${contact.FirstName}</td>
+              					<td>${contact.LastName}</td>
+              					<td>${contact.Phone}</td>
+              					<td>${contact.Email}</td>
+              					<td>${contact.Address}</td>
+              					<td>${contact.City}</td>
+              					<td>${contact.State}</td>
+              					<td>${contact.Zip}</td>
+            				  </tr>`;
 				}
 
 				table += "</table>";
@@ -220,32 +241,57 @@ function searchContacts() {
 	}
 }
 
+function showEditModal(row) {
+	// Retrieve the contact data from the clicked row
+	const contactId = row.getAttribute("data-contact-id");
+	const firstName = row.cells[0].textContent;
+	const lastName = row.cells[1].textContent;
+	const phone = row.cells[2].textContent;
+	const email = row.cells[3].textContent;
+	const address = row.cells[4].textContent;
+	const city = row.cells[5].textContent;
+	const state = row.cells[6].textContent;
+	const zip = row.cells[7].textContent;
+
+	// Open the edit modal and populate it with the contact data
+	// Need a modal function, should replace all console.log calls with filling the text boxes in the modal
+	console.log("Edit modal opened for contact:");
+	console.log("Contact ID:", contactId);
+	console.log("First Name:", firstName);
+	console.log("Last Name:", lastName);
+	console.log("Phone:", phone);
+	console.log("Email:", email);
+	console.log("Address:", address);
+	console.log("City:", city);
+	console.log("State:", state);
+	console.log("Zip:", zip);
+}
+
 function updateContact() {
-	let oldFirstName = document.getElementById("oldFirstName").value;
-	let oldLastName = document.getElementById("oldLastName").value;
-	let newFirstName = document.getElementById("newFirstName").value;
-	let newLastName = document.getElementById("newLastName").value;
-	let newEmail = document.getElementById("newEmail").value;
-	let newPhone = document.getElementById("newPhone").value;
-	let newAddress = document.getElementById("newAddress").value;
-	let newCity = document.getElementById("newCity").value;
-	let newState = document.getElementById("newState").value;
-	let newZip = document.getElementById("newZip").value;
+	let contactId = document.getElementById("contactId").value;
+	let userId = document.getElementById("userId").value;
+	let FirstName = document.getElementById("FirstName").value;
+	let LastName = document.getElementById("LastName").value;
+	let Email = document.getElementById("Email").value;
+	let Phone = document.getElementById("Phone").value;
+	let Address = document.getElementById("Address").value;
+	let City = document.getElementById("City").value;
+	let State = document.getElementById("State").value;
+	let Zip = document.getElementById("Zip").value;
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 
 	let tmp = {
+		ID: contactId,
 		UserId: userId,
-		OldFirstName: oldFirstName,
-		OldLastName: oldLastName,
-		NewFirstName: newFirstName,
-		NewLastName: newLastName,
-		NewEmail: newEmail,
-		NewPhone: newPhone,
-		NewAddress: newAddress,
-		NewCity: newCity,
-		NewState: newState,
-		NewZip: newZip
+		FirstName: FirstName,
+		LastName: LastName,
+		Email: Email,
+		Phone: Phone,
+		Address: Address,
+		City: City,
+		State: State,
+		Zip: Zip
 	};
 	let jsonPayload = JSON.stringify(tmp);
 
@@ -297,3 +343,12 @@ function deleteContact() {
 		document.getElementById("contactDeleteResult").innerHTML = err.message;
 	}
 }
+
+document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
+	link.addEventListener('click', function (event) {
+		event.preventDefault(); // Prevent the default link behavior
+		const contactID = this.getAttribute('data-contact-id');
+		// Use the contactID as needed
+		console.log('Contact ID:', contactID);
+	});
+});
