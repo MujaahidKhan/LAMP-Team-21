@@ -1,0 +1,106 @@
+body{
+    background-color: rgb(25, 26, 27);
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    height: 370px;
+    width: 370px;
+    border: 1px solid #ffffff;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.moon{
+    background-color: rgb(125, 126, 141);
+    height: 170px;
+    width: 170px;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.crater{
+    background-color: rgb(125, 126, 141);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.crater:before{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    box-shadow: -5px 0 0 2px #696767;
+    top: 2px;
+    left: 7px;
+}
+
+.crater-1{
+    top: 27px;
+    left: 90px;
+    transform: scale(0.9);
+}
+
+.crater-2{
+    bottom: 15px;
+    left: 60px;
+    transform: scale(0.6);
+}
+
+.crater-3{
+    left: 15px;
+    transform: scale(0.75);
+}
+
+.crater-4{
+    top: 44px;
+    left: 70px;
+    transform: scale(1.4);
+}
+
+.crater-5{
+    left: 120px;
+    bottom: 6px;
+    transform: scale(1.15);
+}
+
+.shadow{
+    height: 190px;
+    width: 190px;
+    box-shadow: 21px 0 0 5px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    position: relative;
+    bottom: 157.5px;
+    right: 46px;
+}
+
+.orbit{
+    height: 280px;
+    width: 280px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.rocket{
+    height: auto;
+}
