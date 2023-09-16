@@ -7,11 +7,8 @@
 
 body,
 div {
-    display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #27282c;
     color: #fff;
     flex-direction: column;
     gap: 50px;
