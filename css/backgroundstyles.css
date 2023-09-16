@@ -4,7 +4,12 @@ body{
     margin: 0;
 }
 
-.container{
+div{
+    display: block;
+    min-height: auto;
+    z-index: -1;
+}
+.mooncontainer{
     height: 370px;
     width: 370px;
     position: absolute;
