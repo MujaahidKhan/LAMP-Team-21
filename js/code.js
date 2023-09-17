@@ -212,20 +212,20 @@ function searchContacts() {
 				let jsonObject = JSON.parse(xhr.responseText);
 
 				// add labels to the table
-				let table = "<table><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>";
+				let table = `<table class="table table-hover"><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>`;
 
 				// add each contact to the table
 				for (let i = 0; i < jsonObject.results.length; i++) {
 					let contact = jsonObject.results[i];
 					table += `<tr onClick="showEditModal(this)" data-contact-id="${contact.ID}" style="cursor: pointer;">
-              					<td>${contact.FirstName}</td>
-              					<td>${contact.LastName}</td>
-              					<td>${contact.Phone}</td>
-              					<td>${contact.Email}</td>
-              					<td>${contact.Address}</td>
-              					<td>${contact.City}</td>
-              					<td>${contact.State}</td>
-              					<td>${contact.Zip}</td>
+              					<td class="text-wrap">${contact.FirstName}</td>
+              					<td class="text-wrap">${contact.LastName}</td>
+              					<td class="text-wrap">${contact.Phone}</td>
+              					<td class="text-wrap">${contact.Email}</td>
+              					<td class="text-wrap">${contact.Address}</td>
+              					<td class="text-wrap">${contact.City}</td>
+              					<td class="text-wrap">${contact.State}</td>
+              					<td class="text-wrap">${contact.Zip}</td>
             				  </tr>`;
 				}
 
