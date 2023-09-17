@@ -47,11 +47,23 @@
     <span>Already have an account?</span>
     <a class="btn" href="login.html" style="--clr:#1e9bff"><span>Login</span><i></i></a>
     <span id="inner-title">Register</span>
-    <input type="text" id="firstName" placeholder="First Name" />
-    <input type="text" id="lastName" placeholder="Last Name" />
-    <input type="text" id="registerName" placeholder="Username" />
-    <input type="password" id="registerPassword" placeholder="Password" />
-    <input type="password" id="retypePassword" placeholder="Re-enter Password" />
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="registerName" placeholder="Username">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" id="retypePassword" placeholder="Re-Enter Password">
+        </div>
+    </form>
     <a class="btn" href="#" onclick="doRegister();" style="--clr:#1e9bff"><span>Create Account</span><i></i></a>
     <span id="registerResult"></span>
 </body>
