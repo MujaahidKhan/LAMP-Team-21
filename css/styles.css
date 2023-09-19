@@ -137,3 +137,7 @@ a.btn:hover i::after {
 tr {
     word-wrap: break-word;
 }
+
+form{
+    opacity: 50%;
+}
