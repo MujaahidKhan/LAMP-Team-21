@@ -52,6 +52,8 @@
         <div class="star star-15"></div>
     </div>
 
+	
+
 	<h1 id="title">Contact Manager</h1>
 
 
@@ -94,7 +96,8 @@
 	</div> -->
 
 
-	<form class="container table-responsive" id="contactSearchResult"></form>
+	<form class="container table-responsive" id="contactSearchResult">
+	</form>
 	<p id="contactList"></p>
 
 	<form class="popup" id="addContactPopup">
@@ -109,6 +112,37 @@
 		<a class="btn" href="#" onclick="addContact();" style="--clr:#1e9bff"><span>Add Contact</span><i></i></a>
 		<span id="contactAddResult"></span>
 	</form>
+  
+  <!-- Modal -->
+  	<div class="modal fade text-dark" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title text-dark" id="exampleModalLabel">Edit & Delete Contact</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<form id="editContactPopup">
+				<input type="hidden" id="updateContactId"></input>
+				<input class="form-control" type="text" id="updateFirstName" placeholder="First Name">
+				<input class="form-control" type="text" id="updateLastName" placeholder="Last Name">
+				<input class="form-control" type="text" id="updateEmail" placeholder="Email">
+				<input class="form-control" type="text" id="updatePhone" placeholder="Phone Number">
+				<input class="form-control" type="text" id="updateAddress" placeholder="Address">
+				<input class="form-control" type="text" id="updateCity" placeholder="City">
+				<input class="form-control" type="text" id="updateState" placeholder="State">
+				<input class="form-control" type="text" id="updateZip" placeholder="Zip Code">
+				<span id="contactAddResult"></span>
+			</form>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" onclick="updateContact();" class="btn btn-primary">Save changes</button>
+		</div>
+	  </div>
+	</div>
+  	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
