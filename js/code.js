@@ -212,25 +212,25 @@ function searchContacts() {
 				let jsonObject = JSON.parse(xhr.responseText);
 
 				// add labels to the table
-				let table = "<table><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>";
+				let table = `<table class="table table-hover"><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>`;
 
 				// add each contact to the table
 				for (let i = 0; i < jsonObject.results.length; i++) {
 					let contact = jsonObject.results[i];
-					table += `<tr onClick="showEditModal(this)" data-contact-id="${contact.ID}" style="cursor: pointer;">
-              					<td>${contact.FirstName}</td>
-              					<td>${contact.LastName}</td>
-              					<td>${contact.Phone}</td>
-              					<td>${contact.Email}</td>
-              					<td>${contact.Address}</td>
-              					<td>${contact.City}</td>
-              					<td>${contact.State}</td>
-              					<td>${contact.Zip}</td>
+					table += `<tr data-bs-toggle="modal" data-bs-target="#modal" onClick="showEditModal(this)" data-contact-id="${contact.ID}" style="cursor: pointer;">
+              					<td class="text-wrap ">${contact.FirstName}</td>
+              					<td class="text-wrap">${contact.LastName}</td>
+              					<td class="text-wrap">${contact.Phone}</td>
+              					<td class="text-wrap">${contact.Email}</td>
+              					<td class="text-wrap">${contact.Address}</td>
+              					<td class="text-wrap">${contact.City}</td>
+              					<td class="text-wrap">${contact.State}</td>
+              					<td class="text-wrap">${contact.Zip}</td>
             				  </tr>`;
 				}
 
 				table += "</table>";
-
+				
 				document.getElementById("contactSearchResult").innerHTML = table;
 			}
 		};
@@ -255,7 +255,17 @@ function showEditModal(row) {
 
 	// Open the edit modal and populate it with the contact data
 	// Need a modal function, should replace all console.log calls with filling the text boxes in the modal
-	console.log("Edit modal opened for contact:");
+
+	document.getElementById("updateContactId").value = contactId
+	document.getElementById("updateFirstName").value = firstName
+	document.getElementById("updateLastName").value = lastName
+	document.getElementById("updateEmail").value = email
+	document.getElementById("updatePhone").value = phone
+	document.getElementById("updateAddress").value = address
+	document.getElementById("updateCity").value = city
+	document.getElementById("updateState").value = state
+	document.getElementById("updateZip").value = zip
+
 	console.log("Contact ID:", contactId);
 	console.log("First Name:", firstName);
 	console.log("Last Name:", lastName);
@@ -268,16 +278,17 @@ function showEditModal(row) {
 }
 
 function updateContact() {
-	let contactId = document.getElementById("contactId").value;
-	let userId = document.getElementById("userId").value;
-	let FirstName = document.getElementById("FirstName").value;
-	let LastName = document.getElementById("LastName").value;
-	let Email = document.getElementById("Email").value;
-	let Phone = document.getElementById("Phone").value;
-	let Address = document.getElementById("Address").value;
-	let City = document.getElementById("City").value;
-	let State = document.getElementById("State").value;
-	let Zip = document.getElementById("Zip").value;
+	//let userId = document.getElementById("userId").value;
+
+	let contactId = document.getElementById("updateContactId").value;
+	let FirstName = document.getElementById("updateFirstName").value;
+	let LastName = document.getElementById("updateLastName").value;
+	let Email = document.getElementById("updateEmail").value;
+	let Phone = document.getElementById("updatePhone").value;
+	let Address = document.getElementById("updateAddress").value;
+	let City = document.getElementById("updateCity").value;
+	let State = document.getElementById("updateState").value;
+	let Zip = document.getElementById("updateZip").value;
 
 	document.getElementById("contactUpdateResult").innerHTML = "";
 

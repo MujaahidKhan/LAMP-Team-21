@@ -8,10 +8,9 @@
 body,
 div {
     display: flex;
+    min-height: 100vh;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #27282c;
     color: #fff;
     flex-direction: column;
     gap: 50px;
@@ -133,4 +132,12 @@ a.btn:hover i::after {
     width: 300px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+tr {
+    word-wrap: break-word;
+}
+
+form{
+    opacity: 50%;
 }

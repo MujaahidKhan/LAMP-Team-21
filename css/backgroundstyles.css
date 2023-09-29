@@ -1,0 +1,304 @@
+body{
+    background-color: rgb(57, 35, 71);
+    padding: 0;
+    margin: 0;
+}
+
+div{
+    display: block;
+    min-height: auto;
+    z-index: -1;
+}
+.mooncontainer{
+    height: 370px;
+    width: 370px;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.starbox{
+    position: fixed;
+    z-index: -2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.moon{
+    background-color: rgb(125, 126, 141);
+    height: 170px;
+    width: 170px;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.crater{
+    background-color: rgb(125, 126, 141);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.crater:before{
+    content: "";
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    box-shadow: -5px 0 0 2px #696767;
+    top: 2px;
+    left: 7px;
+}
+
+.crater-1{
+    top: 27px;
+    left: 90px;
+    transform: scale(0.9);
+}
+
+.crater-2{
+    bottom: 15px;
+    left: 60px;
+    transform: scale(0.6);
+}
+
+.crater-3{
+    left: 15px;
+    transform: scale(0.75);
+}
+
+.crater-4{
+    top: 44px;
+    left: 70px;
+    transform: scale(1.4);
+}
+
+.crater-5{
+    left: 120px;
+    bottom: 6px;
+    transform: scale(1.15);
+}
+
+.shadow{
+    height: 190px;
+    width: 190px;
+    box-shadow: 21px 0 0 5px rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    position: relative;
+    bottom: 157.5px;
+    right: 46px;
+}
+
+.orbit{
+    height: 280px;
+    width: 280px;
+    border-radius: 50%;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    animation: spin 10s infinite linear;
+}
+
+.rocket{
+    background-color: #ffffff;
+    height: 50px;
+    width: 25px;
+    border-radius: 50% 50% 0 0;
+    position: relative;
+    left: -11px;
+    top: 115px;
+}
+
+@keyframes spin{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.rocket:before{
+    position: absolute;
+    content: "";
+    background-color: rgb(224, 62, 33);
+    height: 20px;
+    width: 55px;
+    z-index: -1;
+    border-radius: 50% 50% 0 0;
+    right: -15px;
+    bottom: 0;
+}
+
+.rocket:after{
+    position: absolute;
+    content: "";
+    background-color: rgb(224, 62, 33);
+    height: 4px;
+    width: 15px;
+    border-radius: 0 0 2px 2px;
+    left: 4.3px;
+    bottom: -4px;
+}
+
+.star{
+    width: 4px;
+    opacity: 0;
+    height: 4px;
+    border-radius: 50%;
+    position: absolute;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1),
+    0 0 0 8px rgba(255, 255, 255, 0.1),
+    0 0 20px rgba(255, 255, 255, 1);
+    animation: staranimation 3s linear infinite;
+}
+
+.star:before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 1px;
+    background: linear-gradient(to bottom right, white, black);
+}
+
+.star-1{
+    left: 120px;
+    bottom: 90px;
+    animation-duration: 1.8s;
+}
+
+.star-2{
+    left: 200px;
+    top: 88px;
+    animation-duration: 1.5s;
+    animation-delay: 0.5s; 
+}
+
+.star-3{
+    left: 400px;
+    top: 400px;
+    animation-duration: 1s;
+    animation-delay: 0s;
+}
+
+.star-4{
+    left: 700px;
+    top: 700px;
+    animation-duration: 0.7s;
+    animation-delay: 2s;
+}
+
+.star-5{
+    left: 900px;
+    top: 700px;
+    animation-duration: 2s;
+    animation-delay: 1.2s; 
+}
+
+.star-6{
+    left: 900px;
+    top: 300px;
+    animation-duration: 1.6s;
+    animation-delay: 1.3s;
+}
+
+.star-7{
+    left: 1000px;
+    top: 950px;
+    animation-duration: 0.8s;
+    animation-delay: 0.6s;
+}
+
+.star-7{
+    left: 1200px;
+    top: 950px;
+    animation-duration: 2s;
+    animation-delay: 0.5s;
+}
+
+.star-8{
+    left: 1500px;
+    top: 95px;
+    animation-duration: 2s;
+    animation-delay: 0.5s;
+}
+
+.star-9{
+    left: 1700px;
+    top: 300px;
+    animation-duration: 1.3s;
+    animation-delay: 0.5s;
+}
+
+.star-10{
+    left: 2000px;
+    top: 300px;
+    animation-duration: 1.6s;
+    animation-delay: 0.8s;
+}
+
+.star-11{
+    left: 2500px;
+    top: 700px;
+    animation-duration: 1.1s;
+    animation-delay: 0.7s;
+}
+
+.star-12{
+    left: 1900px;
+    top: 750px;
+    animation-duration: 2s;
+    animation-delay: 0.2s;
+}
+
+.star-13{
+    left: 1900px;
+    top: 0px;
+    animation-duration: 3s;
+    animation-delay: 0.6s;
+}
+
+.star-14{
+    left: 2500px;
+    top: 0px;
+    animation-duration: 2.6s;
+    animation-delay: 0.8s;
+}
+
+.star-15{
+    left: 2700px;
+    top: 600px;
+    animation-duration: 2.4s;
+    animation-delay: 0.3s;
+}
+
+@keyframes staranimation{
+    0%{
+        transform: rotate(315deg) translateX(0);
+        opacity: 0;
+    }
+
+    70%{
+        opacity: 1;
+    }
+
+    100%{
+        transform: rotate(315deg) translateX(-1000px);
+        opacity: 0;
+    }
+}
