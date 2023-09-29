@@ -1,12 +1,16 @@
 <?php
 $inData = getRequestInfo();
 
+$userId = $inData["UserId"];
 $contactId = $inData["ContactId"];
 $firstName = $inData["FirstName"];
 $lastName = $inData["LastName"];
 $email = $inData["Email"];
-$phoneNumber = $inData["PhoneNumber"];
-
+$phone = $inData["Phone"];
+$address = $inData["Address"];
+$city = $inData["City"];
+$state = $inData["State"];
+$zip = $inData["Zip"];
 
 $host = "localhost";
 $username = "root";
@@ -29,17 +33,17 @@ if ($conn->connect_error) {
                             City = ?,
                             State = ?,
                             Zip = ?
-                            WHERE ContactID = ?");
-    $stmt->bind_param("ssssssssi",
+                            WHERE ID = ? AND UserID = ?");
+    $stmt->bind_param("ssssssssii",
                         $firstName,
                         $lastName,
                         $email,
-                        $phoneNumber,
+                        $phone,
                         $address,
                         $city,
                         $state,
                         $zip,
-                        $contactId);
+                        $contactId, $userId);
     # execute statement
     $stmt->execute();
     $stmt->close();
