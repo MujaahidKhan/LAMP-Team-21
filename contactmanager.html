@@ -118,25 +118,42 @@
 	<div class="modal-dialog">
 	  <div class="modal-content">
 		<div class="modal-header">
-		  <h1 class="modal-title text-dark" id="exampleModalLabel">Edit & Delete Contact</h1>
+		  <h1 class="modal-title text-dark" id="exampleModalLabel">Edit Contact</h1>
 		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
 			<form id="editContactPopup">
-				<input type="hidden" id="updateContactId"></input>
+				<!-- Hidden input, so no label is needed -->
+				<input type="hidden" id="updateContactId">
+
+				<label for="updateFirstName" class="text-dark">First Name:</label>
 				<input class="form-control" type="text" id="updateFirstName" placeholder="First Name">
+
+				<label for="updateLastName" class="text-dark">Last Name:</label>
 				<input class="form-control" type="text" id="updateLastName" placeholder="Last Name">
+
+				<label for="updateEmail" class="text-dark">Email:</label>
 				<input class="form-control" type="text" id="updateEmail" placeholder="Email">
+
+				<label for="updatePhone" class="text-dark">Phone Number:</label>
 				<input class="form-control" type="text" id="updatePhone" placeholder="Phone Number">
+
+				<label for="updateAddress" class="text-dark">Address:</label>
 				<input class="form-control" type="text" id="updateAddress" placeholder="Address">
+
+				<label for="updateCity" class="text-dark">City:</label>
 				<input class="form-control" type="text" id="updateCity" placeholder="City">
+
+				<label for="updateState" class="text-dark">State:</label>
 				<input class="form-control" type="text" id="updateState" placeholder="State">
+
+				<label for="updateZip" class="text-dark">Zip Code:</label>
 				<input class="form-control" type="text" id="updateZip" placeholder="Zip Code">
+
 				<span id="contactAddResult"></span>
 			</form>
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 		  <button type="button" onclick="updateContact();" class="btn btn-primary">Save changes</button>
 		  <button type="button" onclick="deleteContact();" class="btn btn-danger">Delete Contact</button>
 		</div>

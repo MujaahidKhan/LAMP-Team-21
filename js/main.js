@@ -314,6 +314,7 @@ function updateContact() {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				// document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+				window.location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -344,6 +345,7 @@ function deleteContact() {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
 				// document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+				window.location.reload();
 			}
 		};
 		xhr.send(jsonPayload);
