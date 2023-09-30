@@ -9,6 +9,13 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <!-- <script type="text/javascript" src="js/md5.js"></script> -->
     <script type="text/javascript" src="js/main.js"></script>
+    <script>
+        function enterKey(event)
+        {
+            if (event.key == "Enter")
+                doLogin();
+        }
+    </script>
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/backgroundstyles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
@@ -52,14 +59,13 @@
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
         crossorigin="anonymous"></script>
 
-    
     <h1 class="text-center"id="title">Better Placeholder Title</h1>
     <form>
         <div class="mb-3">
             <input type="text" class="form-control" id="loginName" placeholder="Username">
         </div>
         <div class="mb-3">
-            <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+            <input type="password" class="form-control" id="loginPassword" placeholder="Password" onkeydown="enterKey(event)">
         </div>
     </form>
 

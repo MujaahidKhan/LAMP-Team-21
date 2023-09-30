@@ -210,7 +210,7 @@ function searchContacts() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				document.getElementById("contactSearchResult").innerHTML = "";
 				let jsonObject = JSON.parse(xhr.responseText);
 
 				// add labels to the table
