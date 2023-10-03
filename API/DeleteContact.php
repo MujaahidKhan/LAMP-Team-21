@@ -4,18 +4,18 @@ $inData = getRequestInfo();
 $contactId = $inData["ContactId"];
 
 $host = "localhost";
-$username = "root";
+$sqlusername = "root";
 $sqlPassword = "root";
 $database = "ContactManagerDB";
 
 // Create connection
-$conn = new mysqli($host, $username, $sqlPassword, $database);
+$conn = new mysqli($host, $sqlusername, $sqlPassword, $database);
 
 if ($conn->connect_error) {
     returnWithError($conn->connect_error);
 } else {
     # prepare statement
-    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ContactID = ?");
+    $stmt = $conn->prepare("DELETE FROM Contacts WHERE ID = ?");
     $stmt->bind_param("i", $contactId);
     # execute statement
     $stmt->execute();
