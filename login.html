@@ -9,31 +9,32 @@
     <script type="text/javascript" src="js/stars.js"></script>
     <link href="./dist/output.css" rel="stylesheet">
     <link href="./css/stars.css" rel="stylesheet">
+    <link href="./css/rocket.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
 <body>
-    <div class="stars-container" id="stars-container">
-        <div class="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950 p-12">
-            <div
-                class="max-w-sm bg-gradient-to-b from-sky-300 to-purple-500 p-px dark:from-gray-800 dark:to-transparent">
-                <div class="bg-white px-10 p-12 dark:bg-gray-900">
+    <img src="./images/rocket.png" class="rocket-img" alt="Samar's rocket"/>
+    <div class="stars-container" id="stars-container" onclick="seaOfStars()">
+        <div class="flex min-h-screen items-center justify-center bg-gray-950 p-12">
+            <div class="max-w-sm">
+                <div class="px-10 p-12 bg-gray-900">
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Login to your account</h1>
-                        <p class="text-sm tracking-wide text-gray-600 dark:text-gray-300">Don't have an account? <a
+                        <h1 class="text-xl font-semibold text-gray-800 text-white">Login to your account</h1>
+                        <p class="text-sm tracking-wide text-gray-600 text-gray-300">Don't have an account? <a
                                 href="register.html"
-                                class="text-blue-600 transition duration-200 hover:underline dark:text-blue-400">Register</a>
+                                class="text-blue-600 transition duration-200 hover:underline text-blue-400">Register</a>
                         </p>
                     </div>
 
                     <div class="mt-8 space-y-8">
                         <div class="space-y-6">
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
                                 placeholder="username" type="username" id="usernameField" />
 
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
                                 placeholder="password" type="password" id="passwordField" />
                         </div>
 
@@ -41,7 +42,7 @@
                             class="h-9 px-3 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
                             Login
                         </button>
-                        <span id="loginResult"
+                        <span id="resultMessage"
                             class="inline-block w-full text-red-500 text-sm font-medium text-center mt-2"></span>
                     </div>
                 </div>

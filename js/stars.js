@@ -4,7 +4,7 @@ function getRandomNumber(min, max) {
 }
 
 // Generate random stars
-function generateStars() {
+function seaOfStars() {
     const numStars = 3; // Number of stars to generate
     const container = document.getElementById("stars-container");
 
@@ -16,11 +16,16 @@ function generateStars() {
         star.style.bottom = `${getRandomNumber(0, 100)}%`;
         star.style.animationDuration = `${getRandomNumber(5, 15)}s`;
         container.appendChild(star);
+
+        // Remove star when animation ends
+        star.addEventListener("animationend", () => {
+            star.remove();
+        });
     }
 }
 
-// Call generateStars every 5 seconds
-setInterval(generateStars, 5000);
+// Call seaOfStars every 5 seconds
+setInterval(seaOfStars, 5000);
 
-// Call generateStars on page load
-window.addEventListener("load", generateStars);
+// Call seaOfStars on page load
+window.addEventListener("load", seaOfStars);

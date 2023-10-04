@@ -9,51 +9,53 @@
     <script type="text/javascript" src="js/stars.js"></script>
     <link href="./dist/output.css" rel="stylesheet">
     <link href="./css/stars.css" rel="stylesheet">
+    <link href="./css/rocket.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 </head>
 
 <body>
-    <div class="stars-container" id="stars-container">
-        <div class="flex min-h-screen items-center justify-center bg-white dark:bg-gray-950 p-12">
+    <img src="./images/rocket.png" class="rocket-img" alt="Samar's rocket"/>
+    <div class="stars-container" id="stars-container" onclick="generateStars()">
+        <div class="flex min-h-screen items-center justify-center bg-gray-950 p-12">
             <div
-                class="max-w-sm bg-gradient-to-b from-sky-300 to-purple-500 p-px dark:from-gray-800 dark:to-transparent">
-                <div class="bg-white px-10 p-12 dark:bg-gray-900">
+                class="max-w-sm p-px from-gray-800 to-transparent">
+                <div class="px-10 p-12 bg-gray-900">
                     <div>
-                        <h1 class="text-xl font-semibold text-gray-800 dark:text-white">Create a new account</h1>
-                        <p class="text-sm tracking-wide text-gray-600 dark:text-gray-300">Already have an account? <a
+                        <h1 class="text-xl font-semibold text-gray-800 text-white">Create a new account</h1>
+                        <p class="text-sm tracking-wide text-gray-600 text-gray-300">Already have an account? <a
                                 href="login.html"
-                                class="text-blue-600 transition duration-200 hover:underline dark:text-blue-400">Login</a>
+                                class="text-blue-600 transition duration-200 hover:underline text-blue-400">Login</a>
                         </p>
                     </div>
 
                     <div class="mt-8 space-y-8">
                         <div class="space-y-6">
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
-                                placeholder="first name" type="text" id="firstNameField" />
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
+                                placeholder="first name" type="text" id="registerFirstNameField" />
 
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
-                                placeholder="last name" type="text" id="lastNameField" />
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
+                                placeholder="last name" type="text" id="registerLastNameField" />
 
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
                                 placeholder="username" type="username" id="usernameField" />
 
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
                                 placeholder="password" type="password" id="passwordField" />
 
                             <input
-                                class="w-full bg-transparent text-gray-600 dark:text-white dark:border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 dark:placeholder-gray-300"
-                                placeholder="retype password" type="password" id="retypePasswordField" />
+                                class="w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 invalid:border-red-500 placeholder-gray-300"
+                                placeholder="retype password" type="password" id="registerRetypePasswordField" />
                         </div>
 
                         <button onclick="doRegister();"
                             class="h-9 px-3 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
                             Register
                         </button>
-                        <span id="registerResult"
+                        <span id="resultMessage"
                             class="inline-block w-full text-red-500 text-sm font-medium text-center mt-2"></span>
                     </div>
                 </div>

@@ -5,11 +5,11 @@ let userId = -1;
 let contactId = -1;
 
 function doRegister() {
-	let firstName = document.getElementById("firstName").value;
-	let lastName = document.getElementById("lastName").value;
-	let username = document.getElementById("registerName").value;
-	let password = document.getElementById("registerPassword").value;
-	let retypePassword = document.getElementById("retypePassword").value;
+	let firstName = document.getElementById("registerFirstNameField").value;
+	let lastName = document.getElementById("registerLastNameField").value;
+	let username = document.getElementById("usernameField").value; // not "register" so doLogin can read it easily
+	let password = document.getElementById("passwordField").value;
+	let retypePassword = document.getElementById("registerRetypePasswordField").value;
 
 	if (password !== retypePassword) {
 		document.getElementById("registerResult").innerHTML = "Passwords do not match";
@@ -33,15 +33,16 @@ function doRegister() {
 			if (this.readyState == 4 && this.status == 200) {
 				let jsonObject = JSON.parse(xhr.responseText);
 				if (jsonObject.error) {
-					document.getElementById("registerResult").innerHTML = jsonObject.error;
+					document.getElementById("resultMessage").innerHTML = jsonObject.error;
 				} else {
-					document.getElementById("registerResult").innerHTML = "Registration successful";
+					document.getElementById("resultMessage").innerHTML = "Registration successful";
+					doLogin();
 				}
 			}
 		};
 		xhr.send(jsonPayload);
 	} catch (err) {
-		document.getElementById("registerResult").innerHTML = err.message;
+		document.getElementById("resultMessage").innerHTML = err.message;
 	}
 }
 
@@ -56,7 +57,7 @@ function doLogin() {
 	const username = document.getElementById("usernameField").value;
 	const password = document.getElementById("passwordField").value;
 
-	document.getElementById("loginResult").innerHTML = "";
+	document.getElementById("resultMessage").innerHTML = "";
 
 	let tmp = { username: username, password: password };
 	//	var tmp = {login:login,password:hash};
@@ -74,7 +75,7 @@ function doLogin() {
 				userId = jsonObject.id;
 
 				if (userId < 1) {
-					document.getElementById("loginResult").innerHTML = "Username/Password is incorrect";
+					document.getElementById("resultMessage").innerHTML = "Username/Password is incorrect";
 					return;
 				}
 
@@ -89,7 +90,7 @@ function doLogin() {
 		xhr.send(jsonPayload);
 	}
 	catch (err) {
-		document.getElementById("loginResult").innerHTML = err.message;
+		document.getElementById("resultMessage").innerHTML = err.message;
 	}
 
 }
@@ -123,7 +124,7 @@ function readCookie() {
 		window.location.href = "index.html";
 	}
 	else {
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("nameDisplay").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
@@ -135,29 +136,45 @@ function doLogout() {
 	window.location.href = "index.html";
 }
 
-// Function to show the popup
-function showPopup() {
-	const popupContainer = document.getElementById('popupContainer');
-	popupContainer.style.display = 'flex';
+function showAddContactModal() {
+	// Show the modal
+	document.getElementById('addContactModal').classList.remove('hidden');
 }
 
-// Function to hide the popup
-function hidePopup() {
-	const popupContainer = document.getElementById('popupContainer');
-	popupContainer.style.display = 'none';
+function hideAddContactModal() {
+	// Hide the modal
+	document.getElementById('addContactModal').classList.add('hidden');
+}
+
+function clearAddContactFields() {
+	// Clear the input fields
+	document.getElementById('addFirstNameField').value = '';
+	document.getElementById('addLastNameField').value = '';
+	document.getElementById('addEmailField').value = '';
+	document.getElementById('addPhoneField').value = '';
+	document.getElementById('addAddressField').value = '';
+	document.getElementById('addCityField').value = '';
+	document.getElementById('addStateField').value = '';
+	document.getElementById('addZipField').value = '';
 }
 
 function addContact() {
-	let newFirstName = document.getElementById("firstName").value;
-	let newLastName = document.getElementById("lastName").value;
-	let newEmail = document.getElementById("email").value;
-	let newPhone = document.getElementById("phone").value;
-	let newAddress = document.getElementById("address").value;
-	let newCity = document.getElementById("city").value;
-	let newState = document.getElementById("state").value;
-	let newZip = document.getElementById("zip").value;
+	let newFirstName = document.getElementById("addFirstNameField").value;
+	let newLastName = document.getElementById("addLastNameField").value;
+	let newEmail = document.getElementById("addEmailField").value;
+	let newPhone = document.getElementById("addPhoneField").value;
+	let newAddress = document.getElementById("addAddressField").value;
+	let newCity = document.getElementById("addCityField").value;
+	let newState = document.getElementById("addStateField").value;
+	let newZip = document.getElementById("addZipField").value;
 
-	document.getElementById("contactAddResult").innerHTML = "";
+	// Validation: Check if first or last names contain spaces
+	// if (newFirstName.includes(' ') || newLastName.includes(' ')) {
+	//     alert("First and last names may not contain spaces.");
+	//     return; // Stop the function if validation fails
+	// }
+
+	// document.getElementById("contactAddResult").innerHTML = "";
 
 	// json payload
 	let tmp = {
@@ -181,14 +198,16 @@ function addContact() {
 	try {
 		xhr.onreadystatechange = function () {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				// document.getElementById("contactAddResult").innerHTML = "Contact has been added";
 				window.location.reload()
 			}
 		};
 		xhr.send(jsonPayload);
+		clearAddContactFields();
+		hideAddContactModal();
 	}
 	catch (err) {
-		document.getElementById("contactAddResult").innerHTML = err.message;
+		// document.getElementById("contactAddResult").innerHTML = err.message;
 	}
 
 }
@@ -214,27 +233,53 @@ function searchContacts() {
 				document.getElementById("contactSearchResult").innerHTML = "";
 				let jsonObject = JSON.parse(xhr.responseText);
 
-				// add labels to the table
-				let table = `<table class="table table-hover"><tr><th>First Name</th><th>Last Name</th><th>Phone</th><th>Email</th><th>Address</th><th>City</th><th>State</th><th>Zip</th></tr><tr>`;
+				// Create a table element
+				let table = document.createElement("table");
+				table.classList.add("w-full", "table-auto", "border-collapse", "border");
 
-				// add each contact to the table
-				for (let i = 0; i < jsonObject.results.length; i++) {
-					let contact = jsonObject.results[i];
-					table += `<tr data-bs-toggle="modal" data-bs-target="#modal" onClick="showEditModal(this)" data-contact-id="${contact.ID}" style="cursor: pointer;">
-              					<td class="text-wrap ">${contact.FirstName}</td>
-              					<td class="text-wrap">${contact.LastName}</td>
-              					<td class="text-wrap">${contact.Phone}</td>
-              					<td class="text-wrap">${contact.Email}</td>
-              					<td class="text-wrap">${contact.Address}</td>
-              					<td class="text-wrap">${contact.City}</td>
-              					<td class="text-wrap">${contact.State}</td>
-              					<td class="text-wrap">${contact.Zip}</td>
-            				  </tr>`;
-				}
+				// Create the table header
+				let thead = document.createElement("thead");
+				let headerRow = document.createElement("tr");
+				["Name", "Phone", "Email", "Address", "City", "State", "Zip"].forEach((headerText) => {
+					let th = document.createElement("th");
+					th.textContent = headerText;
+					th.classList.add("px-4", "py-2", "bg-gray-900", "text-gray-200");
+					headerRow.appendChild(th);
+				});
+				thead.appendChild(headerRow);
+				table.appendChild(thead);
 
-				table += "</table>";
-				
-				document.getElementById("contactSearchResult").innerHTML = table;
+				// Create the table body
+				let tbody = document.createElement("tbody");
+				jsonObject.results.forEach((contact, index) => {
+					let row = document.createElement("tr");
+					row.dataset.teToggle = "modal";
+					row.dataset.teTarget = "#modal";
+					row.addEventListener("click", function () {
+						populateUpdateModal(this);
+					});
+					row.dataset.contactId = contact.ID;
+					row.classList.add("cursor-pointer", "hover:bg-gray-700", index % 2 === 0 ? "bg-gray-800" : "bg-gray-850", "text-gray-100");
+
+					// Combine First Name and Last Name
+					let nameCell = document.createElement("td");
+					nameCell.textContent = `${contact.FirstName} ${contact.LastName}`;
+					nameCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
+					row.appendChild(nameCell);
+
+					["Phone", "Email", "Address", "City", "State", "Zip"].forEach((property) => {
+						let td = document.createElement("td");
+						td.textContent = contact[property];
+						td.classList.add("px-4", "py-2", "whitespace-no-wrap");
+						row.appendChild(td);
+					});
+
+					tbody.appendChild(row);
+				});
+				table.appendChild(tbody);
+
+				// Append the table to the contactSearchResult element
+				document.getElementById("contactSearchResult").appendChild(table);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -244,52 +289,71 @@ function searchContacts() {
 	}
 }
 
-function showEditModal(row) {
-	// Retrieve the contact data from the clicked row
-	contactId = row.getAttribute("data-contact-id");
-	let firstName = row.cells[0].textContent;
-	let lastName = row.cells[1].textContent;
-	let phone = row.cells[2].textContent;
-	let email = row.cells[3].textContent;
-	let address = row.cells[4].textContent;
-	let city = row.cells[5].textContent;
-	let state = row.cells[6].textContent;
-	let zip = row.cells[7].textContent;
+// Search for a contact by ID
+function searchContactByID(contactId, userId) {
+	let tmp = { contactId: contactId, userId: userId };
+	let jsonPayload = JSON.stringify(tmp);
 
-	// Open the edit modal and populate it with the contact data
-	// Need a modal function, should replace all console.log calls with filling the text boxes in the modal
+	let url = urlBase + '/SearchContactByID.' + extension;
 
-	document.getElementById("updateContactId").value = contactId
-	document.getElementById("updateFirstName").value = firstName
-	document.getElementById("updateLastName").value = lastName
-	document.getElementById("updateEmail").value = email
-	document.getElementById("updatePhone").value = phone
-	document.getElementById("updateAddress").value = address
-	document.getElementById("updateCity").value = city
-	document.getElementById("updateState").value = state
-	document.getElementById("updateZip").value = zip
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	try {
+		xhr.send(jsonPayload);
+		let jsonObject = JSON.parse(xhr.responseText);
+		return jsonObject;
+	}
+	catch (err) {
+		// document.getElementById("contactSearchResult").innerHTML = err.message;
+	}
+}
 
-	console.log("Contact ID:", contactId);
-	console.log("First Name:", firstName);
-	console.log("Last Name:", lastName);
-	console.log("Phone:", phone);
-	console.log("Email:", email);
-	console.log("Address:", address);
-	console.log("City:", city);
-	console.log("State:", state);
-	console.log("Zip:", zip);
+function populateUpdateModal(row) {
+	// Retrieve the contact data from the database
+	contactId = row.getAttribute("data-contact-id"); // probably unsafe but works
+	let contact = searchContactByID(contactId, userId); // should only ever return one contact
+	let firstName = contact.result.FirstName;
+	let lastName = contact.result.LastName;
+	let phone = contact.result.Phone;
+	let email = contact.result.Email;
+	let address = contact.result.Address;
+	let city = contact.result.City;
+	let state = contact.result.State;
+	let zip = contact.result.Zip;
+
+	// Open the update modal and populate it with the contact data
+	showUpdateContactModal();
+
+	document.getElementById("updateFirstNameField").value = firstName
+	document.getElementById("updateLastNameField").value = lastName
+	document.getElementById("updatePhoneField").value = phone
+	document.getElementById("updateEmailField").value = email
+	document.getElementById("updateAddressField").value = address
+	document.getElementById("updateCityField").value = city
+	document.getElementById("updateStateField").value = state
+	document.getElementById("updateZipField").value = zip
+}
+
+function showUpdateContactModal() {
+	// Show the modal
+	document.getElementById('updateContactModal').classList.remove('hidden');
+}
+
+function hideUpdateContactModal() {
+	// Hide the modal
+	document.getElementById('updateContactModal').classList.add('hidden');
 }
 
 function updateContact() {
-	let contactId = document.getElementById("updateContactId").value;
-	let FirstName = document.getElementById("updateFirstName").value;
-	let LastName = document.getElementById("updateLastName").value;
-	let Email = document.getElementById("updateEmail").value;
-	let Phone = document.getElementById("updatePhone").value;
-	let Address = document.getElementById("updateAddress").value;
-	let City = document.getElementById("updateCity").value;
-	let State = document.getElementById("updateState").value;
-	let Zip = document.getElementById("updateZip").value;
+	let FirstName = document.getElementById("updateFirstNameField").value;
+	let LastName = document.getElementById("updateLastNameField").value;
+	let Email = document.getElementById("updatePhoneField").value;
+	let Phone = document.getElementById("updateEmailField").value;
+	let Address = document.getElementById("updateAddressField").value;
+	let City = document.getElementById("updateCityField").value;
+	let State = document.getElementById("updateStateField").value;
+	let Zip = document.getElementById("updateZipField").value;
 
 	let tmp = {
 		UserId: userId,
@@ -325,8 +389,7 @@ function updateContact() {
 }
 
 function deleteContact() {
-	// let deleteId = row.getAttribute("data-contact-id");
-	let deleteId = contactId; // this is very unsafe but should work
+	let deleteId = contactId; // probably also unsafe but works
 
 	// document.getElementById("contactDeleteResult").innerHTML = "";
 
@@ -337,7 +400,7 @@ function deleteContact() {
 
 	let url = urlBase + '/DeleteContact.' + extension;
 
-	let xhr = new XMLHttpRequest();	
+	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	try {
@@ -348,6 +411,8 @@ function deleteContact() {
 			}
 		};
 		xhr.send(jsonPayload);
+		hideUpdateContactModal();
+
 	}
 	catch (err) {
 		//document.getElementById("contactDeleteResult").innerHTML = err.message;

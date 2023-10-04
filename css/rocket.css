@@ -1,0 +1,10 @@
+.rocket-img {
+    width: 100px;
+    /*Adjustthewidthasneeded*/height: auto;
+    /*Maintaintheaspectratio*/transform: translateX(-50%) translateY(0%) rotate(45deg);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    -webkit-transform: translateX(-50%) translateY(50px) rotate(45deg);
+}
