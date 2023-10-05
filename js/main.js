@@ -441,10 +441,7 @@ document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 	});
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-	let passwordinput = document.getElementById("passwordField");
-	passwordinput.addEventListener('keypress', function(e) {
-	  if (e.key === "Enter") 
-		doLogin();
-	});
+document.addEventListener('keypress', function(e) {
+	if (e.key === "Enter")
+	  doLogin();
   });
