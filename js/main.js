@@ -240,10 +240,20 @@ function searchContacts() {
 				// Create the table header
 				let thead = document.createElement("thead");
 				let headerRow = document.createElement("tr");
+
+				// Create Mobile Headers
+				const mobileHeaders = ["Name", "Phone", "Email"];
+
 				["Name", "Phone", "Email", "Address", "City", "State", "Zip"].forEach((headerText) => {
 					let th = document.createElement("th");
 					th.textContent = headerText;
 					th.classList.add("px-4", "py-2", "bg-gray-900", "text-gray-200");
+
+					// This hides the columns that will not be seen on smaller screens
+					if (!mobileHeaders.includes(headerText)){
+						th.classList.add("hidden", "md:table-cell");
+  					}
+
 					headerRow.appendChild(th);
 				});
 				thead.appendChild(headerRow);
@@ -271,6 +281,11 @@ function searchContacts() {
 						let td = document.createElement("td");
 						td.textContent = contact[property];
 						td.classList.add("px-4", "py-2", "whitespace-no-wrap");
+
+						if (!mobileHeaders.includes(property)){
+							td.classList.add("hidden", "md:table-cell");
+						}
+
 						row.appendChild(td);
 					});
 
