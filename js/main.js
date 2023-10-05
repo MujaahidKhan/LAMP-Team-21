@@ -46,8 +46,6 @@ function doRegister() {
 	}
 }
 
-
-
 function doLogin() {
 	userId = 0;
 	firstName = "";
@@ -442,3 +440,11 @@ document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 		console.log('Contact ID:', contactID);
 	});
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+	let passwordinput = document.getElementById("passwordField");
+	passwordinput.addEventListener('keypress', function(e) {
+	  if (e.key === "Enter") 
+		doLogin();
+	});
+  });
