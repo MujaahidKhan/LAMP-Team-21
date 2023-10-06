@@ -231,6 +231,12 @@ function searchContacts() {
 				document.getElementById("contactSearchResult").innerHTML = "";
 				let jsonObject = JSON.parse(xhr.responseText);
 
+				document.getElementById("searchResultsContainer").style.display = "block";
+				if (jsonObject.results == null){
+					document.getElementById("searchResultsContainer").style.display = "none";
+					return;
+				}
+
 				// Create a table element
 				let table = document.createElement("table");
 				table.classList.add("w-full", "table-auto", "border-collapse", "border");
