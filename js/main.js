@@ -304,6 +304,7 @@ function searchContacts() {
 					emailLink.textContent = contact.Email;
 					emailCell.appendChild(emailLink);
 					emailCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
+					row.append(emailCell);
 
 					["Address", "City", "State", "Zip"].forEach((property) => {
 						let td = document.createElement("td");
