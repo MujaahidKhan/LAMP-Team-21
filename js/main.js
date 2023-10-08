@@ -367,8 +367,8 @@ function hideUpdateContactModal() {
 function updateContact() {
 	let FirstName = document.getElementById("updateFirstNameField").value;
 	let LastName = document.getElementById("updateLastNameField").value;
-	let Email = document.getElementById("updatePhoneField").value;
-	let Phone = document.getElementById("updateEmailField").value;
+	let Email = document.getElementById("updateEmailField").value;
+	let Phone = document.getElementById("updatePhoneField").value;
 	let Address = document.getElementById("updateAddressField").value;
 	let City = document.getElementById("updateCityField").value;
 	let State = document.getElementById("updateStateField").value;
