@@ -223,15 +223,23 @@
                         <div class="flex mb-2 space-x-2">
                             <div class="mb-2 w-1/2">
                                 <label class="block text-sm text-gray-600" for="updateFirstNameField">First Name</label>
-                                <input type="text" id="updateFirstNameField"
-                                    class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300"
-                                    placeholder="First Name">
+                                <input type="text" id="updateFirstNameField" 
+                                    class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300" 
+                                    placeholder="First Name" 
+                                    required 
+                                    pattern="[A-Za-z\-'\s]+"
+                                    title="Please enter a valid first name (letters, hyphens, apostrophes and spaces only)"
+                                >
                             </div>
                             <div class="mb-2 w-1/2">
                                 <label class="block text-sm text-gray-600" for="updateLastNameField">Last Name</label>
-                                <input type="text" id="updateLastNameField"
-                                    class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300"
-                                    placeholder="Last Name">
+                                <input type="text" id="updateLastNameField" 
+                                    class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300" 
+                                    placeholder="Last Name" 
+                                    required 
+                                    pattern="[A-Za-z\-'\s]+"
+                                    title="Please enter a valid last name (letters, hyphens, apostrophes and spaces only)"
+                                >
                             </div>
                         </div>
                         <div class="mb-2">
