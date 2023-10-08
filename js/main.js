@@ -323,7 +323,11 @@ function searchContacts() {
 
 					// Edit Phone Number Formatting
 					let phoneCell = document.createElement("td");
-					phoneCell.textContent = formatPhone(contact.Phone);
+					let phoneNumber = formatPhone(contact.Phone);
+					let phoneLink = document.createElement("a");
+					phoneLink.href = `tel:${phoneNumber}`;
+					phoneLink.textContent = phoneNumber;
+					phoneCell.append(phoneLink);
 					phoneCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
 					row.append(phoneCell);
 

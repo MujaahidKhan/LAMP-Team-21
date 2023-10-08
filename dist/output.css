@@ -1023,6 +1023,7 @@ video {
   background-color: rgb(153 27 27 / var(--tw-bg-opacity));
 }
 
+
 @media (min-width: 768px) {
   .md\:table-cell {
     display: table-cell;
@@ -1031,4 +1032,15 @@ video {
   .md\:w-80 {
     width: 20rem;
   }
-}
+
+  .table-responsive {
+    overflow-x: auto;
+  }
+  }
+
+@media (max-width: 767px) {
+      .table-responsive {
+          overflow-x: scroll;
+          -webkit-overflow-scrolling: touch;
+      }
+  }
