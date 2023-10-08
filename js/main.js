@@ -196,7 +196,7 @@ function addContact() {
     }
 
 	if (!document.getElementById("addEmailField").checkValidity() && !document.getElementById("addPhoneField").checkValidity()) {
-        alert("Please enter a valid phone number with exactly 10 digits or a valid email address.");
+        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
         return false;
     }
 
@@ -485,7 +485,7 @@ function updateContact() {
     }
 
     if (!document.getElementById("updateEmailField").checkValidity() && !document.getElementById("updatePhoneField").checkValidity()) {
-        alert("Please enter a valid phone number with exactly 10 digits or a valid email address.");
+        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
         return false;
     }
 
