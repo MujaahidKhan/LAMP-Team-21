@@ -195,11 +195,6 @@ function addContact() {
         return false;
     }
 
-	if (!document.getElementById("addEmailField").checkValidity() && !document.getElementById("addPhoneField").checkValidity()) {
-        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
-        return false;
-    }
-
 	// json payload
 	let tmp = {
 		UserId: userId,
@@ -481,11 +476,6 @@ function updateContact() {
 
 	if (!document.getElementById("updateFirstNameField").checkValidity()) {
         alert(document.getElementById("updateFirstNameField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateEmailField").checkValidity() && !document.getElementById("updatePhoneField").checkValidity()) {
-        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
         return false;
     }
 
