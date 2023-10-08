@@ -195,38 +195,8 @@ function addContact() {
         return false;
     }
 
-    if (!document.getElementById("addLastNameField").checkValidity()) {
-        alert(document.getElementById("addLastNameField").title);
-        return false;
-    }
-
-    if (!document.getElementById("addPhoneField").checkValidity()) {
-        alert(document.getElementById("addPhoneField").title);
-        return false;
-    }
-
-	if (!document.getElementById("addEmailField").checkValidity()) {
-        alert(document.getElementById("addEmailField").title);
-        return false;
-    }
-
-    if (!document.getElementById("addAddressField").checkValidity()) {
-        alert(document.getElementById("addAddressField").title);
-        return false;
-    }
-
-    if (!document.getElementById("addCityField").checkValidity()) {
-        alert(document.getElementById("addCityField").title);
-        return false;
-    }
-
-    if (!document.getElementById("addStateField").checkValidity()) {
-        alert(document.getElementById("addStateField").title);
-        return false;
-    }
-
-    if (!document.getElementById("addZipField").checkValidity()) {
-        alert(document.getElementById("addZipField").title);
+	if (!document.getElementById("addEmailField").checkValidity() && !document.getElementById("addPhoneField").checkValidity()) {
+        alert("Please enter a valid phone number with exactly 10 digits or a valid email address.");
         return false;
     }
 
@@ -514,38 +484,8 @@ function updateContact() {
         return false;
     }
 
-    if (!document.getElementById("updateLastNameField").checkValidity()) {
-        alert(document.getElementById("updateLastNameField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updatePhoneField").checkValidity()) {
-        alert(document.getElementById("updatePhoneField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateEmailField").checkValidity()) {
-        alert(document.getElementById("updateEmailField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateAddressField").checkValidity()) {
-        alert(document.getElementById("updateAddressField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateCityField").checkValidity()) {
-        alert(document.getElementById("updateCityField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateStateField").checkValidity()) {
-        alert(document.getElementById("updateStateField").title);
-        return false;
-    }
-
-    if (!document.getElementById("updateZipField").checkValidity()) {
-        alert(document.getElementById("updateZipField").title);
+    if (!document.getElementById("updateEmailField").checkValidity() && !document.getElementById("updatePhoneField").checkValidity()) {
+        alert("Please enter a valid phone number with exactly 10 digits or a valid email address.");
         return false;
     }
 
