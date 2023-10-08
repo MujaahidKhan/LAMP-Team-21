@@ -249,16 +249,13 @@ function searchContacts() {
 				}
 				console.log(shouldSort);
 				switch (shouldSort) {
-					case -1:
-						jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
-						break;
 					// Last Name Ascending
 					case 0:
 						jsonObject.results.sort((a, b) => a.LastName.localeCompare(b.LastName));
 						break;
 					// Last Name Descending
 					case 1:
-						jsonObject.results.sort((a, b) => a.LastName.localeCompare(a.LastName));
+						jsonObject.results.sort((a, b) => b.LastName.localeCompare(a.LastName));
 						break;
 					// First Name Ascending
 					case 2:
@@ -266,7 +263,7 @@ function searchContacts() {
 						break;
 					// First Name Descending
 					case 3:
-						jsonObject.results.sort((a, b) => a.FirstName.localeCompare(a.FirstName));
+						jsonObject.results.sort((a, b) => b.FirstName.localeCompare(a.FirstName));
 						break;
 					// State Ascending
 					case 4:
@@ -274,7 +271,7 @@ function searchContacts() {
 						break;
 					// State Descending
 					case 5:
-						jsonObject.results.sort((a, b) => a.State.localeCompare(a.State));
+						jsonObject.results.sort((a, b) => b.State.localeCompare(a.State));
 						break;
 					default:
 						break;
