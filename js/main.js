@@ -248,35 +248,36 @@ function searchContacts() {
 					return;
 				}
 				
-				if (shouldSort !== -1) {
-					switch (shouldSort) {
-						// Last Name Ascending
-						case 0:
-							jsonObject.results.sort((a, b) => a.LastName.localeCompare(b.LastName));
-							break;
-						// Last Name Descending
-						case 1:
-							jsonObject.results.sort((a, b) => a.LastName.localeCompare(a.LastName));
-							break;
-						// First Name Ascending
-						case 2:
-							jsonObject.results.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
-							break;
-						// First Name Descending
-						case 3:
-							jsonObject.results.sort((a, b) => a.FirstName.localeCompare(a.FirstName));
-							break;
-						// State Ascending
-						case 4:
-							jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
-							break;
-						// State Descending
-						case 5:
-							jsonObject.results.sort((a, b) => a.State.localeCompare(a.State));
-							break;
-						default:
-							break;
-					}
+				switch (shouldSort) {
+					case -1:
+						jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
+						break;
+					// Last Name Ascending
+					case 0:
+						jsonObject.results.sort((a, b) => a.LastName.localeCompare(b.LastName));
+						break;
+					// Last Name Descending
+					case 1:
+						jsonObject.results.sort((a, b) => a.LastName.localeCompare(a.LastName));
+						break;
+					// First Name Ascending
+					case 2:
+						jsonObject.results.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
+						break;
+					// First Name Descending
+					case 3:
+						jsonObject.results.sort((a, b) => a.FirstName.localeCompare(a.FirstName));
+						break;
+					// State Ascending
+					case 4:
+						jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
+						break;
+					// State Descending
+					case 5:
+						jsonObject.results.sort((a, b) => a.State.localeCompare(a.State));
+						break;
+					default:
+						break;
 				}
 
 				// Create a table element
@@ -388,6 +389,7 @@ function searchContactByID(contactId, userId) {
 function handleSorting() {
     const sortOptions = document.getElementById('sortOptions');
     const selectedOption = sortOptions.value;
+	console.log('Selected: ', selectedOption);
 	
 	switch (selectedOption) {
 		case 'lastNameAsc':
