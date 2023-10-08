@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center">
+                        <div class="flex items-center mt-4">
                             <!-- Dropdown menu for sort order -->
                             <select id="sortOptions" class="max-w-96 mr-2 bg-transparent text-gray-600 text-black border-gray-700 border border-gray-300 px-3 py-2 text-sm">
                                 <option value="lastNameAsc">Sort By Last Name (Ascending)</option>
@@ -63,10 +63,14 @@
                             </select>
                             
                             <!-- Sort button -->
-                            <button onclick="handleSorting()" class="mt-0 h-8 px-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
+                            <button onclick="handleSorting()" class="mt-0 h-9 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
                                 Sort
                             </button>
                         </div>
+
+                        <button onclick="exportContactsHelper()" class="mt-0 h-9 rounded-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
+                            Download Contacts
+                        </button>
                     </div>
                 </div>
             </div>
