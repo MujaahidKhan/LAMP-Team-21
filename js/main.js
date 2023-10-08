@@ -4,6 +4,7 @@ const extension = 'php';
 let userId = -1;
 let contactId = -1;
 let shouldSort = -1;
+let exporting = 0;
 
 function doRegister() {
 	let firstName = document.getElementById("registerFirstNameField").value;
@@ -287,6 +288,11 @@ function searchContacts() {
 						break;
 				}
 
+				if (exporting === 1) {
+					exporting = 0;
+					exportContacts(jsonObject.results);
+				}
+
 				// Create a table element
 				let table = document.createElement("table");
 				table.classList.add("w-full", "table-auto", "border-collapse", "border");
@@ -319,8 +325,13 @@ function searchContacts() {
 					let row = document.createElement("tr");
 					row.dataset.teToggle = "modal";
 					row.dataset.teTarget = "#modal";
-					row.addEventListener("click", function () {
+					row.addEventListener("click", function (event) {
+						if (
+							event.target !== phoneLink &&
+							event.target !== emailLink
+						) {
 						populateUpdateModal(this);
+						}
 					});
 					row.dataset.contactId = contact.ID;
 					row.classList.add("cursor-pointer", "hover:bg-gray-700", index % 2 === 0 ? "bg-gray-800" : "bg-gray-850", "text-gray-100");
@@ -541,6 +552,58 @@ function deleteContact() {
 	catch (err) {
 		//document.getElementById("contactDeleteResult").innerHTML = err.message;
 	}
+}
+
+function exportContactsHelper(){
+	exporting = 1;
+	searchContacts();
+}
+
+function exportContacts(contacts) {
+	if (contacts.length === 0) {
+		alert("Cannot export to CSV. There are currently 0 contacts in your account. Add contacts to download.");
+		return;
+	}
+
+    const sortingOption = document.getElementById("sortOptions").value;
+    switch (sortingOption) {
+        case "lastNameAsc":
+            contacts.sort((a, b) => a.LastName.localeCompare(b.LastName));
+            break;
+        case "lastNameDsc":
+            contacts.sort((a, b) => b.LastName.localeCompare(a.LastName));
+            break;
+        case "firstNameAsc":
+            contacts.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
+            break;
+        case "firstNameDsc":
+            contacts.sort((a, b) => b.FirstName.localeCompare(a.FirstName));
+            break;
+        case "stateAsc":
+            contacts.sort((a, b) => a.State.localeCompare(b.State));
+            break;
+        case "stateDsc":
+            contacts.sort((a, b) => b.State.localeCompare(a.State));
+            break;
+        default:
+            break;
+    }
+
+    let exportContent = "First Name,Last Name,Phone,Email,Address,City,State,Zip\n";
+    contacts.forEach((contact) => {
+        exportContent += `${contact.FirstName},${contact.LastName},${(contact.Phone)},${contact.Email},${contact.Address},${contact.City},${contact.State},${contact.Zip}\n`;
+    });
+
+    const blob = new Blob([exportContent], { type: "text/csv" });
+    const urlDownload = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = urlDownload;
+    a.download = "contacts.csv";
+    a.style.display = "none";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(urlDownload);
+    document.body.removeChild(a);
 }
 
 document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
