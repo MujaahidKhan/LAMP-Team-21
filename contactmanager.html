@@ -53,7 +53,7 @@
 
                         <div class="flex items-center">
                             <!-- Dropdown menu for sort order -->
-                            <select id="sortOptions" class="max-w-96 bg-transparent text-gray-600 text-black border-gray-700 border border-gray-300 px-3 py-2 text-sm">
+                            <select id="sortOptions" class="max-w-96 mr-2 bg-transparent text-gray-600 text-black border-gray-700 border border-gray-300 px-3 py-2 text-sm">
                                 <option value="lastNameAsc">Sort By Last Name (Ascending)</option>
                                 <option value="lastNameDsc">Sort By Last Name (Descending)</option>
                                 <option value="firstNameAsc">Sort By First Name (Ascending)</option>
@@ -76,9 +76,12 @@
 
             <!-- Search Results -->
             <div id="searchResultsContainer" class="max-w-screen-x1 p-12 bg-gray-900" style="z-index: 2;">
-                <form class="container table-responsive" id="contactSearchResult">
-                    <!-- Content for search results goes here -->
-                </form>
+                <!-- Add a container div for scrolling -->
+                <div class="table-container">
+                    <form class="container" id="contactSearchResult">
+                        <!-- Content for search results goes here -->
+                    </form>
+                </div>
             </div>
 
             <!-- Add Modal -->

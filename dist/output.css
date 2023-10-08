@@ -1039,8 +1039,8 @@ video {
   }
 
 @media (max-width: 767px) {
-      .table-responsive {
-          overflow-x: scroll;
-          -webkit-overflow-scrolling: touch;
+  .table-responsive {
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
       }
   }
