@@ -159,10 +159,23 @@ function clearAddContactFields() {
 
 function formatPhone(phone) {
 	const numPhone = phone.replace(/\D/g, '');
+	// North America
 	if(numPhone.length === 10) {
 		return `(${numPhone.slice(0, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
 	}
-	else {
+	// North America - International
+	else if(numPhone.length === 11) {
+		return `+1 (${numPhone.slice(1, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
+	}
+	// European (With Country Code)
+	else if(numPhone.length === 12){
+		return `+${numPhone.slice(0, 2)} ${numPhone.slice(2, 6)} ${numPhone.slice(6)}`;
+	}
+	// European (With Country Code and Longer Local Code)
+	else if(numPhone.length === 15){
+		return `+${numPhone.slice(0, 2)} ${numPhone.slice(2, 3)} ${numPhone.slice(3, 5)} ${numPhone.slice(5, 7)} ${numPhone.slice(7, 9)} ${numPhone.slice(9, 11)} ${numPhone.slice(11)}`
+	}
+	else{
 		return phone;
 	}
 }
