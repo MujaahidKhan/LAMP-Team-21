@@ -3,38 +3,7 @@ const extension = 'php';
 
 let userId = -1;
 let contactId = -1;
-let shouldSort = -1;
-
-
-function handleSorting() {
-    const sortOptions = document.getElementById('sortOptions');
-    const selectedOption = sortOptions.value;
-	
-	switch (selectedOption) {
-		case 'lastNameAsc':
-			shouldSort = 0;
-			break;
-		case 'lastNameDsc':
-			shouldSort = 1;
-			break;
-		case 'firstNameAsc':
-			shouldSort = 2;
-			break;
-		case 'firstNameDsc':
-			shouldSort = 3;
-			break;
-		case 'stateAsc':
-			shouldSort = 4;
-			break;
-		case 'stateDsc':
-			shouldSort = 5;
-			break;
-		default:
-			break;
-	}
-
-	searchContacts();
-}
+let shouldSort = 0;
 
 function doRegister() {
 	let firstName = document.getElementById("registerFirstNameField").value;
@@ -414,6 +383,36 @@ function searchContactByID(contactId, userId) {
 	catch (err) {
 		// document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
+}
+
+function handleSorting() {
+    const sortOptions = document.getElementById('sortOptions');
+    const selectedOption = sortOptions.value;
+	
+	switch (selectedOption) {
+		case 'lastNameAsc':
+			shouldSort = 0;
+			break;
+		case 'lastNameDsc':
+			shouldSort = 1;
+			break;
+		case 'firstNameAsc':
+			shouldSort = 2;
+			break;
+		case 'firstNameDsc':
+			shouldSort = 3;
+			break;
+		case 'stateAsc':
+			shouldSort = 4;
+			break;
+		case 'stateDsc':
+			shouldSort = 5;
+			break;
+		default:
+			break;
+	}
+
+	searchContacts();
 }
 
 function populateUpdateModal(row) {
