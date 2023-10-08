@@ -3,6 +3,38 @@ const extension = 'php';
 
 let userId = -1;
 let contactId = -1;
+let shouldSort = -1;
+
+
+function handleSorting() {
+    const sortOptions = document.getElementById('sortOptions');
+    const selectedOption = sortOptions.value;
+	
+	switch (selectedOption) {
+		case 'lastNameAsc':
+			shouldSort = 0;
+			break;
+		case 'lastNameDsc':
+			shouldSort = 1;
+			break;
+		case 'firstNameAsc':
+			shouldSort = 2;
+			break;
+		case 'firstNameDsc':
+			shouldSort = 3;
+			break;
+		case 'stateAsc':
+			shouldSort = 4;
+			break;
+		case 'stateDsc':
+			shouldSort = 5;
+			break;
+		default:
+			break;
+	}
+
+	searchContacts();
+}
 
 function doRegister() {
 	let firstName = document.getElementById("registerFirstNameField").value;
@@ -246,6 +278,37 @@ function searchContacts() {
 					document.getElementById("searchResultsContainer").style.display = "none";
 					return;
 				}
+				
+				if (shouldSort !== -1) {
+					switch (shouldSort) {
+						// Last Name Ascending
+						case 0:
+							jsonObject.results.sort((a, b) => a.LastName.localeCompare(b.LastName));
+							break;
+						// Last Name Descending
+						case 1:
+							jsonObject.results.sort((a, b) => a.LastName.localeCompare(a.LastName));
+							break;
+						// First Name Ascending
+						case 2:
+							jsonObject.results.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
+							break;
+						// First Name Descending
+						case 3:
+							jsonObject.results.sort((a, b) => a.FirstName.localeCompare(a.FirstName));
+							break;
+						// State Ascending
+						case 4:
+							jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
+							break;
+						// State Descending
+						case 5:
+							jsonObject.results.sort((a, b) => a.State.localeCompare(a.State));
+							break;
+						default:
+							break;
+					}
+				}
 
 				// Create a table element
 				let table = document.createElement("table");
@@ -462,6 +525,8 @@ function deleteContact() {
 		//document.getElementById("contactDeleteResult").innerHTML = err.message;
 	}
 }
+
+document.getElementById('sortOptions').addEventListener('change', handleSorting);
 
 document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 	link.addEventListener('click', function (event) {
