@@ -247,7 +247,7 @@ function searchContacts() {
 					document.getElementById("searchResultsContainer").style.display = "none";
 					return;
 				}
-				
+				console.log(shouldSort);
 				switch (shouldSort) {
 					case -1:
 						jsonObject.results.sort((a, b) => a.State.localeCompare(b.State));
