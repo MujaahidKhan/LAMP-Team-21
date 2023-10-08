@@ -10,7 +10,7 @@
 }
 
 .logo-img {
-    width: 100px;
+    width: 10%;
     height: auto;
     transform: translateX(-50%) translateY(100%) rotate(0deg);
     position: fixed;
