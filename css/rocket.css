@@ -8,3 +8,25 @@
     z-index: 0;
     -webkit-transform: translateX(-50%) translateY(50px) rotate(45deg);
 }
+
+.logo-img {
+    width: 300px;
+    height: auto;
+    transform: translateX(-50%) translateY(100%) rotate(0deg);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    -webkit-transform: translateX(-50%) translateY(165px) rotate(0deg);
+}
+
+.logo-rocket-img {
+    width: 300px;
+    height: auto;
+    transform: translateX(-50%) translateY(100%) rotate(0deg);
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 0;
+    -webkit-transform: translateX(-50%) translateY(50px) rotate(0deg);
+}

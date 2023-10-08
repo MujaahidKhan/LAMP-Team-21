@@ -156,6 +156,16 @@ function clearAddContactFields() {
 	document.getElementById('addZipField').value = '';
 }
 
+function formatPhone(phone) {
+	const numPhone = phone.replace(/\D/g, '');
+	if(numPhone.length === 10) {
+		return `(${numPhone.slice(0, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
+	}
+	else {
+		return phone;
+	}
+}
+
 function addContact() {
 	let newFirstName = document.getElementById("addFirstNameField").value;
 	let newLastName = document.getElementById("addLastNameField").value;
@@ -281,7 +291,21 @@ function searchContacts() {
 					nameCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
 					row.appendChild(nameCell);
 
-					["Phone", "Email", "Address", "City", "State", "Zip"].forEach((property) => {
+					// Edit Phone Number Formatting
+					let phoneCell = document.createElement("td");
+					phoneCell.textContent = formatPhone(contact.Phone);
+					phoneCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
+					row.append(phoneCell);
+
+					// Make E-Mail Address Clickable
+					let emailCell = document.createElement("td");
+					let emailLink = document.createElement("a");
+					emailLink.href = 'mailto:${contact.Email}';
+					emailLink.textContent = contact.Email;
+					emailCell.appendChild(emailLink);
+					emailCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
+
+					["Address", "City", "State", "Zip"].forEach((property) => {
 						let td = document.createElement("td");
 						td.textContent = contact[property];
 						td.classList.add("px-4", "py-2", "whitespace-no-wrap");
