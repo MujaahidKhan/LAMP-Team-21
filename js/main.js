@@ -187,13 +187,13 @@ function addContact() {
         return false;
     }
 
-    if (!document.getElementById("addEmailField").checkValidity()) {
-        alert(document.getElementById("addEmailField").title);
+    if (!document.getElementById("addPhoneField").checkValidity()) {
+        alert(document.getElementById("addPhoneField").title);
         return false;
     }
 
-    if (!document.getElementById("addPhoneField").checkValidity()) {
-        alert(document.getElementById("addPhoneField").title);
+	if (!document.getElementById("addEmailField").checkValidity()) {
+        alert(document.getElementById("addEmailField").title);
         return false;
     }
 
