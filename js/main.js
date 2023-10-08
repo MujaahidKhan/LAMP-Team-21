@@ -509,6 +509,46 @@ function updateContact() {
 	let State = document.getElementById("updateStateField").value;
 	let Zip = document.getElementById("updateZipField").value;
 
+	if (!document.getElementById("updateFirstNameField").checkValidity()) {
+        alert(document.getElementById("updateFirstNameField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateLastNameField").checkValidity()) {
+        alert(document.getElementById("updateLastNameField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updatePhoneField").checkValidity()) {
+        alert(document.getElementById("updatePhoneField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateEmailField").checkValidity()) {
+        alert(document.getElementById("updateEmailField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateAddressField").checkValidity()) {
+        alert(document.getElementById("updateAddressField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateCityField").checkValidity()) {
+        alert(document.getElementById("updateCityField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateStateField").checkValidity()) {
+        alert(document.getElementById("updateStateField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateZipField").checkValidity()) {
+        alert(document.getElementById("updateZipField").title);
+        return false;
+    }
+
 	let tmp = {
 		UserId: userId,
 		ContactId: contactId,
