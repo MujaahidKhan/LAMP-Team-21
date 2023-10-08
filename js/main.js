@@ -3,7 +3,7 @@ const extension = 'php';
 
 let userId = -1;
 let contactId = -1;
-let shouldSort = 0;
+let shouldSort = -1;
 
 function doRegister() {
 	let firstName = document.getElementById("registerFirstNameField").value;
@@ -123,7 +123,7 @@ function readCookie() {
 		window.location.href = "index.html";
 	}
 	else {
-		document.getElementById("nameDisplay").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("nameDisplay").innerHTML = "Welcome back, " + firstName + " " + lastName + ".";
 	}
 }
 
