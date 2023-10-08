@@ -527,9 +527,6 @@ function deleteContact() {
 	}
 }
 
-document.getElementById('sortOptions').onchange = (event) => {
-	handleSorting();
-}
 document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 	link.addEventListener('click', function (event) {
 		event.preventDefault(); // Prevent the default link behavior
@@ -543,3 +540,5 @@ document.addEventListener('keypress', function(e) {
 	if (e.key === "Enter")
 	  doLogin();
   });
+
+document.getElementById('sortOptions').addEventListener('change', handleSorting);
