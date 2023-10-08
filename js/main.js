@@ -162,7 +162,7 @@ function formatPhone(phone) {
 		return `(${numPhone.slice(0, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
 	}
 	else {
-		return `${phone} - ${numPhone.length}`;
+		return phone;
 	}
 }
 
