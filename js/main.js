@@ -162,7 +162,7 @@ function formatPhone(phone) {
 		return `(${numPhone.slice(0, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
 	}
 	else {
-		return phone;
+		return `${phone} - ${numPhone.length}`;
 	}
 }
 
@@ -300,7 +300,7 @@ function searchContacts() {
 					// Make E-Mail Address Clickable
 					let emailCell = document.createElement("td");
 					let emailLink = document.createElement("a");
-					emailLink.href = 'mailto:${contact.Email}';
+					emailLink.href = `mailto:${contact.Email}`;
 					emailLink.textContent = contact.Email;
 					emailCell.appendChild(emailLink);
 					emailCell.classList.add("px-4", "py-2", "whitespace-no-wrap");
@@ -391,8 +391,8 @@ function hideUpdateContactModal() {
 function updateContact() {
 	let FirstName = document.getElementById("updateFirstNameField").value;
 	let LastName = document.getElementById("updateLastNameField").value;
-	let Email = document.getElementById("updateEmailField").value;
 	let Phone = document.getElementById("updatePhoneField").value;
+	let Email = document.getElementById("updateEmailField").value;
 	let Address = document.getElementById("updateAddressField").value;
 	let City = document.getElementById("updateCityField").value;
 	let State = document.getElementById("updateStateField").value;
@@ -403,8 +403,8 @@ function updateContact() {
 		ContactId: contactId,
 		FirstName: FirstName,
 		LastName: LastName,
-		Email: Email,
 		Phone: Phone,
+		Email: Email,
 		Address: Address,
 		City: City,
 		State: State,
