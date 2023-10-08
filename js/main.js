@@ -191,13 +191,15 @@ function addContact() {
 	let newState = document.getElementById("addStateField").value;
 	let newZip = document.getElementById("addZipField").value;
 
-	// Validation: Check if first or last names contain spaces
-	// if (newFirstName.includes(' ') || newLastName.includes(' ')) {
-	//     alert("First and last names may not contain spaces.");
-	//     return; // Stop the function if validation fails
-	// }
+	if (!document.getElementById("addFirstNameField").checkValidity()) {
+        alert(document.getElementById("addFirstNameField").title);
+        return false;
+    }
 
-	// document.getElementById("contactAddResult").innerHTML = "";
+	if (!document.getElementById("addEmailField").checkValidity() && !document.getElementById("addPhoneField").checkValidity()) {
+        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
+        return false;
+    }
 
 	// json payload
 	let tmp = {
@@ -487,6 +489,16 @@ function updateContact() {
 	let City = document.getElementById("updateCityField").value;
 	let State = document.getElementById("updateStateField").value;
 	let Zip = document.getElementById("updateZipField").value;
+
+	if (!document.getElementById("updateFirstNameField").checkValidity()) {
+        alert(document.getElementById("updateFirstNameField").title);
+        return false;
+    }
+
+    if (!document.getElementById("updateEmailField").checkValidity() && !document.getElementById("updatePhoneField").checkValidity()) {
+        alert("Please enter a valid phone number with exactly 10, 11, 12, or 15 digits or a valid email address.");
+        return false;
+    }
 
 	let tmp = {
 		UserId: userId,
