@@ -177,9 +177,13 @@
                                 </div>
                                 <div class="mb-2">
                                     <label class="block text-sm text-gray-600" for="addZipField">Zip</label>
-                                    <input type="text" id="addZipField"
-                                        class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300"
-                                        placeholder="Zip">
+                                    <input type="text" id="addZipField" 
+                                        class="focus:outline-none w-full bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-600 placeholder-gray-300" 
+                                        placeholder="Zip" 
+                                        required 
+                                        pattern="^\d{5}(?:-\d{4})?$"
+                                        title="Please enter a valid ZIP code (e.g., 12345 or 12345-6789)."
+                                    >                             
                                 </div>
                             </div>
                         </div>
