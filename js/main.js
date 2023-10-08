@@ -177,13 +177,45 @@ function addContact() {
 	let newState = document.getElementById("addStateField").value;
 	let newZip = document.getElementById("addZipField").value;
 
-	// Validation: Check if first or last names contain spaces
-	// if (newFirstName.includes(' ') || newLastName.includes(' ')) {
-	//     alert("First and last names may not contain spaces.");
-	//     return; // Stop the function if validation fails
-	// }
+	if (!document.getElementById("addFirstNameField").checkValidity()) {
+        alert(document.getElementById("addFirstNameField").title);
+        return false;
+    }
 
-	// document.getElementById("contactAddResult").innerHTML = "";
+    if (!document.getElementById("addLastNameField").checkValidity()) {
+        alert(document.getElementById("addLastNameField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addEmailField").checkValidity()) {
+        alert(document.getElementById("addEmailField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addPhoneField").checkValidity()) {
+        alert(document.getElementById("addPhoneField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addAddressField").checkValidity()) {
+        alert(document.getElementById("addAddressField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addCityField").checkValidity()) {
+        alert(document.getElementById("addCityField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addStateField").checkValidity()) {
+        alert(document.getElementById("addStateField").title);
+        return false;
+    }
+
+    if (!document.getElementById("addZipField").checkValidity()) {
+        alert(document.getElementById("addZipField").title);
+        return false;
+    }
 
 	// json payload
 	let tmp = {
