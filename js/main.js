@@ -527,8 +527,9 @@ function deleteContact() {
 	}
 }
 
-document.getElementById('sortOptions').addEventListener('change', handleSorting);
-
+document.getElementById('sortOptions').onchange = (event) => {
+	handleSorting();
+}
 document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 	link.addEventListener('click', function (event) {
 		event.preventDefault(); // Prevent the default link behavior
