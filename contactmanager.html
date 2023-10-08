@@ -39,16 +39,6 @@
                                 class="max-w-96 bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm placeholder-gray-300 invalid:border-red-500 placeholder-gray-300"
                                 placeholder="Search..." />
 
-                            <!-- Dropdown menu for sort order-->
-                            <select id="sortOptions" class="max-w-96 bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm">
-                                <option value="lastNameAsc">Sort By Last Name (Ascending)</option>
-                                <option value="lastNameDsc">Sort By Last Name (Descending)</option>
-                                <option value="firstNameAsc">Sort By First Name (Ascending)</option>
-                                <option value="firstNameDsc">Sort By First Name (Descending)</option>
-                                <option value="stateAsc">Sort By State (Ascending)</option>
-                                <option value="stateDsc">Sort By State (Descending)</option>
-                            </select>
-
                             <!-- Plus button to open the modal -->
                             <div class="">
                                 <button onclick="showAddContactModal()"
@@ -60,6 +50,20 @@
                                 </button>
                             </div>
                         </div>
+
+                        <!-- Dropdown menu for sort order-->
+                        <select id="sortOptions" class="max-w-96 bg-transparent text-gray-600 text-white border-gray-700 border border-gray-300 px-3 py-2 text-sm">
+                            <option value="lastNameAsc">Sort By Last Name (Ascending)</option>
+                            <option value="lastNameDsc">Sort By Last Name (Descending)</option>
+                            <option value="firstNameAsc">Sort By First Name (Ascending)</option>
+                            <option value="firstNameDsc">Sort By First Name (Descending)</option>
+                            <option value="stateAsc">Sort By State (Ascending)</option>
+                            <option value="stateDsc">Sort By State (Descending)</option>
+                        </select>
+                        <button onclick="handleSorting()"
+                        class="mt-4 h-9 px-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
+                            Sort
+                        </button>
                     </div>
                 </div>
             </div>
