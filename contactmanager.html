@@ -32,6 +32,10 @@
                                 class="mt-4 h-9 px-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
                                 Logout
                             </button>
+                            <button onclick="exportContactsHelper();"
+                            class="mt-4 h-9 px-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
+                            Download CSV
+                        </button>
                         </div>
 
                         <div class="flex space-x-2 mt-4">
@@ -53,7 +57,7 @@
 
                         <div class="flex items-center mt-4">
                             <!-- Dropdown menu for sort order -->
-                            <select id="sortOptions" class="max-w-96 mr-2 bg-transparent text-gray-600 text-black border-gray-700 border border-gray-300 px-3 py-2 text-sm">
+                            <select id="sortOptions" class="max-w-96 mr-2 bg-transparent text-white text-black border-gray-700 border border-gray-300 px-3 py-2 text-sm">
                                 <option value="lastNameAsc">Sort By Last Name (Ascending)</option>
                                 <option value="lastNameDsc">Sort By Last Name (Descending)</option>
                                 <option value="firstNameAsc">Sort By First Name (Ascending)</option>
@@ -67,10 +71,6 @@
                                 Sort
                             </button>
                         </div>
-
-                        <button onclick="exportContactsHelper()" class="mt-0 h-9 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 focus:bg-blue-700 transition duration-500 text-white">
-                            Download Contacts
-                        </button>
                     </div>
                 </div>
             </div>
@@ -327,9 +327,6 @@
             </div>
         </div>
 
-
-
-
         <script>
             let typingTimer;
             const doneTypingInterval = 850; // 850 milliseconds (0.85 seconds)
@@ -345,6 +342,8 @@
                 searchContacts();
             });
         </script>
+
+        
 </body>
 
 </html>
