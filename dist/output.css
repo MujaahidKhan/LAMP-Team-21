@@ -1032,15 +1032,4 @@ video {
   .md\:w-80 {
     width: 20rem;
   }
-
-  .table-responsive {
-    overflow-x: auto;
-  }
-  }
-
-@media (max-width: 767px) {
-  .table-responsive {
-      overflow-x: scroll;
-      -webkit-overflow-scrolling: touch;
-      }
   }
