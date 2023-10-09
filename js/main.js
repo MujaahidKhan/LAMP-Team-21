@@ -161,22 +161,22 @@ function clearAddContactFields() {
 function formatPhone(phone) {
 	const numPhone = phone.replace(/\D/g, '');
 	// North America
-	if(numPhone.length === 10) {
+	if (numPhone.length === 10) {
 		return `(${numPhone.slice(0, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
 	}
 	// North America - International
-	else if(numPhone.length === 11) {
+	else if (numPhone.length === 11) {
 		return `+1 (${numPhone.slice(1, 3)}) ${numPhone.slice(3, 6)}-${numPhone.slice(6, 10)}`;
 	}
 	// European (With Country Code)
-	else if(numPhone.length === 12){
+	else if (numPhone.length === 12) {
 		return `+${numPhone.slice(0, 2)} ${numPhone.slice(2, 6)} ${numPhone.slice(6)}`;
 	}
 	// European (With Country Code and Longer Local Code)
-	else if(numPhone.length === 15){
+	else if (numPhone.length === 15) {
 		return `+${numPhone.slice(0, 2)} ${numPhone.slice(2, 3)} ${numPhone.slice(3, 5)} ${numPhone.slice(5, 7)} ${numPhone.slice(7, 9)} ${numPhone.slice(9, 11)} ${numPhone.slice(11)}`
 	}
-	else{
+	else {
 		return phone;
 	}
 }
@@ -192,9 +192,9 @@ function addContact() {
 	let newZip = document.getElementById("addZipField").value;
 
 	if (!document.getElementById("addFirstNameField").checkValidity()) {
-        alert(document.getElementById("addFirstNameField").title);
-        return false;
-    }
+		alert(document.getElementById("addFirstNameField").title);
+		return false;
+	}
 
 	// json payload
 	let tmp = {
@@ -238,45 +238,45 @@ function exportContacts(contacts) {
 		return;
 	}
 
-    const sortingOption = document.getElementById("sortOptions").value;
-    switch (sortingOption) {
-        case "lastNameAsc":
-            contacts.sort((a, b) => a.LastName.localeCompare(b.LastName));
-            break;
-        case "lastNameDsc":
-            contacts.sort((a, b) => b.LastName.localeCompare(a.LastName));
-            break;
-        case "firstNameAsc":
-            contacts.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
-            break;
-        case "firstNameDsc":
-            contacts.sort((a, b) => b.FirstName.localeCompare(a.FirstName));
-            break;
-        case "stateAsc":
-            contacts.sort((a, b) => a.State.localeCompare(b.State));
-            break;
-        case "stateDsc":
-            contacts.sort((a, b) => b.State.localeCompare(a.State));
-            break;
-        default:
-            break;
-    }
+	const sortingOption = document.getElementById("sortOptions").value;
+	switch (sortingOption) {
+		case "lastNameAsc":
+			contacts.sort((a, b) => a.LastName.localeCompare(b.LastName));
+			break;
+		case "lastNameDsc":
+			contacts.sort((a, b) => b.LastName.localeCompare(a.LastName));
+			break;
+		case "firstNameAsc":
+			contacts.sort((a, b) => a.FirstName.localeCompare(b.FirstName));
+			break;
+		case "firstNameDsc":
+			contacts.sort((a, b) => b.FirstName.localeCompare(a.FirstName));
+			break;
+		case "stateAsc":
+			contacts.sort((a, b) => a.State.localeCompare(b.State));
+			break;
+		case "stateDsc":
+			contacts.sort((a, b) => b.State.localeCompare(a.State));
+			break;
+		default:
+			break;
+	}
 
-    let exportContent = "First Name,Last Name,Phone,Email,Address,City,State,Zip\n";
-    contacts.forEach((contact) => {
-        exportContent += `${contact.FirstName},${contact.LastName},${(contact.Phone)},${contact.Email},${contact.Address},${contact.City},${contact.State},${contact.Zip}\n`;
-    });
+	let exportContent = "First Name,Last Name,Phone,Email,Address,City,State,Zip\n";
+	contacts.forEach((contact) => {
+		exportContent += `${contact.FirstName},${contact.LastName},${(contact.Phone)},${contact.Email},${contact.Address},${contact.City},${contact.State},${contact.Zip}\n`;
+	});
 
-    const blob = new Blob([exportContent], { type: "text/csv" });
-    const urlDownload = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = urlDownload;
-    a.download = "contacts.csv";
-    a.style.display = "none";
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(urlDownload);
-    document.body.removeChild(a);
+	const blob = new Blob([exportContent], { type: "text/csv" });
+	const urlDownload = window.URL.createObjectURL(blob);
+	const a = document.createElement("a");
+	a.href = urlDownload;
+	a.download = "contacts.csv";
+	a.style.display = "none";
+	document.body.appendChild(a);
+	a.click();
+	window.URL.revokeObjectURL(urlDownload);
+	document.body.removeChild(a);
 }
 
 function searchContacts() {
@@ -301,7 +301,7 @@ function searchContacts() {
 				let jsonObject = JSON.parse(xhr.responseText);
 
 				document.getElementById("searchResultsContainer").style.display = "block";
-				if (jsonObject.results == null){
+				if (jsonObject.results == null) {
 					document.getElementById("searchResultsContainer").style.display = "none";
 					return;
 				}
@@ -357,9 +357,9 @@ function searchContacts() {
 					th.classList.add("px-4", "py-2", "bg-gray-900", "text-gray-200");
 
 					// This hides the columns that will not be seen on smaller screens
-					if (!mobileHeaders.includes(headerText)){
+					if (!mobileHeaders.includes(headerText)) {
 						th.classList.add("hidden", "md:table-cell");
-  					}
+					}
 
 					headerRow.appendChild(th);
 				});
@@ -377,7 +377,7 @@ function searchContacts() {
 							event.target !== phoneLink &&
 							event.target !== emailLink
 						) {
-						populateUpdateModal(this);
+							populateUpdateModal(this);
 						}
 					});
 					row.dataset.contactId = contact.ID;
@@ -413,7 +413,7 @@ function searchContacts() {
 						td.textContent = contact[property];
 						td.classList.add("px-4", "py-2", "whitespace-no-wrap");
 
-						if (!mobileHeaders.includes(property)){
+						if (!mobileHeaders.includes(property)) {
 							td.classList.add("hidden", "md:table-cell");
 						}
 
@@ -456,10 +456,10 @@ function searchContactByID(contactId, userId) {
 }
 
 function handleSorting() {
-    const sortOptions = document.getElementById('sortOptions');
-    const selectedOption = sortOptions.value;
+	const sortOptions = document.getElementById('sortOptions');
+	const selectedOption = sortOptions.value;
 	console.log('Selected: ', selectedOption);
-	
+
 	switch (selectedOption) {
 		case 'lastNameAsc':
 			shouldSort = 0;
@@ -534,9 +534,9 @@ function updateContact() {
 	let Zip = document.getElementById("updateZipField").value;
 
 	if (!document.getElementById("updateFirstNameField").checkValidity()) {
-        alert(document.getElementById("updateFirstNameField").title);
-        return false;
-    }
+		alert(document.getElementById("updateFirstNameField").title);
+		return false;
+	}
 
 	let tmp = {
 		UserId: userId,
@@ -602,7 +602,7 @@ function deleteContact() {
 	}
 }
 
-function exportContactsHelper(){
+function exportContactsHelper() {
 	exporting = 1;
 	searchContacts();
 }
@@ -616,9 +616,9 @@ document.querySelectorAll('a[data-contact-id]').forEach(function (link) {
 	});
 });
 
-document.addEventListener('keypress', function(e) {
+document.addEventListener('keypress', function (e) {
 	if (e.key === "Enter")
-	  doLogin();
-  });
+		doLogin();
+});
 
 document.getElementById('sortOptions').addEventListener('change', handleSorting);

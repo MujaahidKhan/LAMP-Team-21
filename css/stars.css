@@ -1,6 +1,6 @@
 .stars-container {
     position: fixed;
-    z-index: -3;
+    /* z-index: -3; */
     /* Set z-index to -1 to put the stars behind the login box */
     top: 0;
     left: 0;
